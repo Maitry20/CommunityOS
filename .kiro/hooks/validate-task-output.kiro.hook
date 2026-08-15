@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Validate Task Output",
+  "description": "After every completed Spec task, automatically validate the implementation by inspecting changed files, running relevant tests, type checking, and linting. If validation fails, identify the failure, explain the cause, attempt a safe fix, and rerun validation. Do not make unrelated refactors or claim completion if validation is still failing.",
+  "version": "1",
+  "when": {
+    "type": "postTaskExecution"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A Spec task just completed. Validate the implementation:\n\n1. Inspect the files changed by the completed task.\n2. Identify the relevant tests for the changed functionality.\n3. Run the appropriate test suite.\n4. Run type checking and linting when applicable:\n   - For frontend changes: run `npm run lint` (oxlint) and check for TypeScript errors if applicable.\n   - For backend (Python) changes: run Python tests and any configured linters (e.g., ruff, mypy).\n5. If tests, type checking, or linting fail:\n   - Identify the exact failure.\n   - Explain the likely cause.\n   - Attempt a safe fix ONLY if the issue is directly related to the completed task.\n   - Rerun the relevant validation after the fix.\n6. Do NOT make unrelated refactors.\n7. Do NOT claim the task is fully complete if validation is still failing.\n8. Report a concise validation summary stating what passed and what (if anything) still needs attention."
+  }
+}
