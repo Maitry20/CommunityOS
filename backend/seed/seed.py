@@ -194,6 +194,58 @@ def seed_db():
         "createdAt": int(time.time() - 86400)
     })
 
+    # 6. Seed Connections & Matches for Learner and Pro
+    # Pending requests for Pro m-1 (Elena Rostova)
+    table.put_item(Item={
+        "PK": f"COMMUNITY#{community_id}",
+        "SK": "CONNECTION#req-1",
+        "GSI1PK": "PRO#m-1",
+        "GSI1SK": "CONNECTION#req-1",
+        "id": "req-1",
+        "connectionId": "req-1",
+        "learnerId": "m-11",
+        "proId": "m-1",
+        "status": "pending",
+        "question": "How do I handle token context size overflow in Llama 3?",
+        "name": "Emma Smith",
+        "createdAt": int(time.time() - 3600),
+        "communityId": community_id
+    })
+
+    table.put_item(Item={
+        "PK": f"COMMUNITY#{community_id}",
+        "SK": "CONNECTION#req-2",
+        "GSI1PK": "PRO#m-1",
+        "GSI1SK": "CONNECTION#req-2",
+        "id": "req-2",
+        "connectionId": "req-2",
+        "learnerId": "m-6",
+        "proId": "m-1",
+        "status": "pending",
+        "question": "Best practices for chunking hierarchical PDFs cleanly.",
+        "name": "Hiroshi Sato",
+        "createdAt": int(time.time() - 7200),
+        "communityId": community_id
+    })
+
+    # Accepted connection match for Learner m-11 (Emma Smith)
+    table.put_item(Item={
+        "PK": f"COMMUNITY#{community_id}",
+        "SK": "CONNECTION#conn-1",
+        "GSI1PK": "PRO#m-3",
+        "GSI1SK": "CONNECTION#conn-1",
+        "id": "conn-1",
+        "connectionId": "conn-1",
+        "learnerId": "m-11",
+        "proId": "m-3",
+        "status": "accepted",
+        "name": "Devon Chen",
+        "role": "Database Engineer",
+        "experienceLine": "Solved a similar PGVector latency problem 5 months ago",
+        "createdAt": int(time.time() - 86400),
+        "communityId": community_id
+    })
+
     print("Seeding completed successfully!")
 
 if __name__ == "__main__":

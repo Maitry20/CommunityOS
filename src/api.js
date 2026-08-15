@@ -104,6 +104,19 @@ export const api = {
     }
   },
   
+  getProRequests: async (userId, role, communityId) => {
+    try {
+      const res = await fetch(`${API_URL}pros/${userId}/requests`, {
+        method: "GET",
+        headers: getHeaders(userId, role, communityId)
+      });
+      return await res.json();
+    } catch (e) {
+      console.error("API getProRequests error:", e);
+      return [];
+    }
+  },
+  
   updateConnection: async (userId, role, communityId, connectionId, status) => {
     try {
       const res = await fetch(`${API_URL}connections/${connectionId}`, {

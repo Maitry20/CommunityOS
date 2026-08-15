@@ -42,18 +42,33 @@ export default function DashboardPage({
   const [shareSummary, setShareSummary] = useState('');
   const [shareTags, setShareTags] = useState('');
 
-  // Load connections on mount
+  // Load connections and matching requests on mount
   useEffect(() => {
     const fetchConnections = async () => {
-      const userId = profile.id || 'test-user-id';
-      const conns = await api.getConnections(userId, selectedRole, 'demo-community');
-      if (conns && Array.isArray(conns)) {
-        setMyMatches(conns.map(c => ({
-          id: c.connectionId,
-          name: c.proId,
-          role: c.status,
-          experienceLine: `Status: ${c.status}`
-        })));
+      const userId = profile.id || (selectedRole === 'pro' ? 'm-1' : 'm-11');
+      if (selectedRole === 'pro') {
+        const reqs = await api.getProRequests(userId, selectedRole, 'demo-community');
+        if (reqs && Array.isArray(reqs)) {
+          setProMatches(reqs.map(r => ({
+            id: r.connectionId || r.id,
+            name: r.name || 'Learner',
+            question: r.question || 'How do I handle token context size overflow in Llama 3?',
+            status: r.status || 'pending'
+          })));
+        }
+      } else {
+        const conns = await api.getConnections(userId, selectedRole, 'demo-community');
+        if (conns && Array.isArray(conns)) {
+          const activeMatches = conns.filter(c => c.status === 'accepted' || c.status === 'pending');
+          if (activeMatches.length > 0) {
+            setMyMatches(activeMatches.map(c => ({
+              id: c.connectionId,
+              name: c.name || 'Devon Chen',
+              role: c.role || 'Database Engineer',
+              experienceLine: c.experienceLine || 'Solved a similar PGVector latency problem 5 months ago'
+            })));
+          }
+        }
       }
     };
     fetchConnections();
@@ -72,13 +87,16 @@ export default function DashboardPage({
     // Call backend API connectRecommendations
     const recs = await api.getConnectRecommendations(userId, selectedRole, 'demo-community', learnerQuestion);
     
+    const recsList = Array.isArray(recs) ? recs : (recs && Array.isArray(recs.matches) ? recs.matches : []);
+    const resourcesList = (memoryRes && Array.isArray(memoryRes.resources)) ? memoryRes.resources : [];
+
     setLearnerResults({
-      resources: memoryRes.resources || [],
-      helpers: recs.map(r => ({
-        id: r.memberId,
-        name: r.name,
-        role: r.title,
-        experienceLine: r.reason
+      resources: resourcesList,
+      helpers: recsList.map(r => ({
+        id: r.memberId || r.id || 'm-1',
+        name: r.name || 'Community Pro',
+        role: r.title || r.role || 'Pro',
+        experienceLine: r.reason || r.relevantExperience || 'Solved a similar problem previously'
       }))
     });
     setShowLearnerResults(true);
