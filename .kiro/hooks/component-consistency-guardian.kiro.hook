@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "name": "Component Consistency Guardian",
+  "description": "When a React component file is saved, check whether it reuses existing shared components and styling patterns rather than creating duplicates. Enforce visual consistency for buttons, inputs, toggles, cards, headers, badges, chips, and other UI primitives.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "*.jsx",
+      "*.tsx"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A React component file was just saved. Check whether it reuses existing shared components and styling patterns rather than creating duplicates.\n\nCOMPONENTS TO CHECK FOR CONSISTENCY:\n- Button (primary CTA, secondary, accept/decline)\n- Input (text, email, password, url, textarea)\n- Toggle (on/off switch)\n- Card (panel container)\n- Section header (uppercase mono label)\n- Badge (status indicator)\n- Skill chip (tag display)\n- Profile card (avatar + name + role)\n- Stat/counter (numeric display)\n- Table/list row (data rows)\n\nESTABLISHED PATTERNS (from existing codebase):\n\nButtons:\n- Primary CTA: bg-[#ff9900] hover:bg-[#ec7211] text-white font-mono text-xs/sm uppercase tracking-wider rounded-sm font-bold\n- Secondary/action: border border-[#0972d3] text-[#0972d3] hover:bg-[#0972d3] hover:text-white font-mono text-xs uppercase\n- Decline/neutral: border border-[#353f4d] text-neutral-400 hover:bg-[#0f141c] font-mono text-xs uppercase\n\nInputs:\n- bg-[#0f141c] border border-[#353f4d] px-3 py-2 text-xs/sm text-white focus:outline-none focus:border-[#ff9900] rounded-sm font-sans\n\nCards/Panels:\n- bg-[#161b24] border border-[#353f4d] p-5 rounded-sm\n\nSection headers:\n- text-xs font-mono uppercase tracking-wider text-neutral-400\n\nBadges/chips:\n- font-mono text-[9px] bg-[#0f141c] text-neutral-300 border border-[#353f4d] px-2 py-0.5 uppercase tracking-wide\n\nRULES:\n1. Do NOT create multiple visually different button styles (all CTAs should match)\n2. Do NOT create multiple input styles (all inputs share the same dark bg + border pattern)\n3. Do NOT create multiple card styles without a clear semantic reason\n4. USE shared components/patterns where they already exist\n5. Keep all interactive controls consistent with the design system\n6. Teal (#0972d3) ONLY for positive/matching/accepted/saved states\n7. Red/orange (#ec7211) ONLY for Organizer gap information\n8. Do NOT introduce decorative component variants\n9. Do NOT use browser-default controls (unstyled buttons, selects, checkboxes)\n10. Do NOT add a component library (no Material UI, Chakra, shadcn, etc.)\n\nIF VIOLATIONS FOUND:\n- Identify the inconsistent component\n- Show what the established pattern looks like\n- Fix ONLY the styling inconsistency\n- Do NOT change functionality\n- Do NOT refactor unrelated code\n- Prefer reusing an existing pattern over creating a new one"
+  }
+}

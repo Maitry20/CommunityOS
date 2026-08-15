@@ -1,0 +1,18 @@
+{
+  "enabled": true,
+  "name": "UI Design Guardian",
+  "description": "When a frontend file is saved, review the UI changes against the CommunityOS design system rules covering backgrounds, panels, colors, typography, components, motion, and copy. Fix only styling violations without changing functionality.",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "*.jsx",
+      "*.tsx",
+      "*.css"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A frontend file was just saved. Review the UI changes against the CommunityOS design system:\n\nBACKGROUND:\n- Dark slate base (~#0f141c / #12161C)\n- No light/white backgrounds\n\nPANELS:\n- Panel bg: ~#161b24 / #1B212B\n- Subtle borders (border-[#353f4d])\n- Square or barely-rounded corners (rounded-sm max)\n- NO drop shadows\n\nCOLORS:\n- Neutral grayscale is the default text/border color\n- Teal/green (#0972d3 / AWS Blue): ONLY for positive states, matching, accepting, saved states, skill tags\n- Red/orange (#ec7211): RESERVED EXCLUSIVELY for Organizer community-gap cards\n- Amber/orange (#ff9900): Primary accent for hover, focus, CTA buttons\n- Do NOT use accent colors decoratively or randomly\n\nTYPOGRAPHY:\n- Sans-serif (Inter) for normal UI text\n- Monospace (JetBrains Mono) for numbers, statistics, badges, short section labels\n- No serif fonts anywhere\n- Labels: text-[10px] font-mono uppercase tracking-wider\n\nCOMPONENTS:\n- Buttons, inputs, cards, toggles must share the same visual language\n- Dark panel background on inputs (bg-[#0f141c])\n- Subtle border on all interactive elements\n- Teal/orange border accent ONLY on hover, focus, active, or positive states\n- NEVER use browser-default buttons or unstyled form elements\n- NEVER introduce a white default button\n- AVOID excessive rounded corners (max rounded-sm)\n- AVOID pills (fully rounded)\n- AVOID gradients\n- AVOID decorative shadows\n- AVOID decorative icon sets\n\nMOTION:\n- Minimal transitions only\n- Simple fade/slide for newly revealed sections\n- Simple state transition for Accept/Not now buttons\n- No unnecessary animations, bounces, or complex motion\n\nCOPY:\n- Plain, everyday language\n- Do NOT expose internal product terminology to users\n- NEVER use \"Memory\", \"Connect\", \"Radar\", \"evidence strip\", or technical architecture terms as user-facing labels\n- NEVER show match percentages to Learners\n\nCHECKLIST — flag if found:\n- [ ] Inconsistent buttons (different styles across the same view)\n- [ ] Inconsistent inputs (different border/bg patterns)\n- [ ] Excessive rounded corners (rounded-md, rounded-lg, rounded-full on non-toggle elements)\n- [ ] Gradients (bg-gradient-*, linear-gradient)\n- [ ] Shadows (shadow-*, box-shadow)\n- [ ] Unnecessary decorative icons\n- [ ] Decorative accent colors (teal/orange used without semantic meaning)\n- [ ] Browser-default controls (unstyled select, checkbox, radio)\n- [ ] Visible technical jargon in user-facing text\n- [ ] White or light-colored buttons\n- [ ] Serif fonts\n\nIf violations are found:\n- Fix ONLY the relevant UI styling\n- Do NOT change functionality\n- Do NOT refactor unrelated code\n- Keep fixes minimal and focused on design system compliance"
+  }
+}

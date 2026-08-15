@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Frontend Scope Guardian",
+  "description": "After a Spec task completes, review the implementation to ensure no unauthorized pages, routes, or features were added beyond the approved CommunityOS frontend scope (Login, Learner dashboard, Pro dashboard, Organizer dashboard).",
+  "version": "1",
+  "when": {
+    "type": "postTaskExecution"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A Spec task just completed. Review the implementation to ensure it stays within the approved CommunityOS frontend scope.\n\nAPPROVED PRIMARY EXPERIENCES (only these should exist):\n1. Login / role selection\n2. Learner dashboard\n3. Pro dashboard\n4. Organizer dashboard\n\nDO NOT ADD:\n- Separate profile routes\n- Settings pages\n- Notifications pages\n- Messaging pages\n- Community browsing pages\n- Separate people directory\n- Separate event detail pages\n- Admin panel\n- Analytics dashboard\n- Generic AI chatbot\n- Extra onboarding wizard\n- Extra filters beyond what exists\n- Extra navigation systems\n- Unnecessary modal flows\n\nLEARNER DASHBOARD — must contain ONLY:\n1. Question input (\"What are you working on or stuck on?\")\n2. Related to your question (matched resources/sessions)\n3. People who can help (matched Pros)\n4. My matches (persistent connection list)\n\nPRO DASHBOARD — must contain ONLY:\n1. My Profile (skills, focus, help history, match toggle)\n2. People asking for help (learner requests to accept/decline)\n\nORGANIZER DASHBOARD — must contain ONLY:\n1. Top counters (gaps, emerging, strengths)\n2. Community gaps (gap cards with suggested experts)\n3. Event engagement (table with attendance, questions, top topic)\n4. Upload event photos\n\nLOGIN FLOW — must contain ONLY:\n1. Role selection (Learner / Pro / Organizer)\n2. One short profile step (SetupPage)\n3. Direct transition to the selected dashboard\n\nSHARED SECTIONS (appear on all dashboards):\n- AWS Community Hub (share resources board)\n- Connect & Join community links\n\nAPPROVED ROUTES:\n- / (login/role selection)\n- /setup (profile creation)\n- /dashboard (role-based dashboard)\n\nNo additional routes should be created.\n\nIf a change introduces functionality outside this scope:\n- FLAG it as scope creep\n- EXPLAIN where it falls outside the approved specification\n- Do NOT automatically implement it\n- Recommend removing or deferring the out-of-scope addition\n\nPRIORITY: A polished core experience over feature breadth.\n\nThis hook does NOT block improvements to existing approved sections (better styling, better matching logic, better data display). It ONLY flags new pages, routes, or entirely new feature areas that weren't in the approved scope."
+  }
+}
