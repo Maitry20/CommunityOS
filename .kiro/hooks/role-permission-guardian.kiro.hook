@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Role & Permission Guardian",
+  "description": "After a Spec task modifies authentication, routing, dashboard logic, user data, or role-specific functionality, review the implementation against CommunityOS role rules for LEARNER, PRO, and ORGANIZER to ensure no role boundary violations.",
+  "version": "1",
+  "when": {
+    "type": "postTaskExecution"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A Spec task just completed. If the task modified authentication, routing, dashboard logic, user data, or role-specific functionality, review the implementation against these CommunityOS role rules:\n\nCommunityOS has exactly THREE roles: LEARNER, PRO, ORGANIZER.\n\nLEARNER permissions:\n- Can enter as a learner\n- Can provide their name\n- Can submit a question about what they are working on or stuck on\n- Can view related resources/sessions\n- Can view people who can help\n- Can view their previous matches\n- Must NOT access Pro-only profile editing (skills, role/title, focus, help history, match toggle)\n- Must NOT access Organizer-only community management (gaps, event engagement, community links management)\n\nPRO permissions:\n- Can enter as a Pro\n- Can provide name, role/title, and skills\n- Can manage skills, \"What I'm focused on\", \"Things I've helped with before\"\n- Can control \"Open to being matched with learners\"\n- Can see learners asking for help\n- Must NOT automatically receive Organizer permissions\n\nORGANIZER permissions:\n- Can enter as an Organizer\n- Can provide name and community they run\n- Can view community gaps, emerging topics, community strengths\n- Can view event engagement and upload event photos\n- Can see suggested people based on Pro expertise/history\n- Can manage community links\n- Must NOT receive Pro-only functionality unless explicitly required\n\nRULES TO ENFORCE:\n1. Role selection must determine which dashboard is rendered (selectedRole === 'learner' | 'pro' | 'organizer')\n2. Do NOT create additional roles\n3. Do NOT create additional role-specific routes unless explicitly requested\n4. Do NOT allow one dashboard to accidentally render another role's controls\n5. Keep role-specific logic centralized where practical\n6. Use the existing seed data structure — do not create separate incompatible user models\n7. Role checks are for UI behavior and demo correctness (frontend-only prototype)\n8. Do NOT invent authentication, passwords, email verification, or backend authorization beyond what already exists\n\nIf a change violates these rules:\n- Report the specific violation\n- Recommend the smallest correction\n- Do NOT perform unrelated refactoring"
+  }
+}
