@@ -1,0 +1,2231 @@
+{
+  "/CommunityOsInfraStack": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSTable": [
+    {
+      "type": "aws:cdk:hasPhysicalName",
+      "data": {
+        "Ref": "CommunityOSTable9423371B"
+      }
+    }
+  ],
+  "/CommunityOsInfraStack/Custom::S3AutoDeleteObjectsCustomResourceProvider": [
+    {
+      "type": "aws:cdk:is-custom-resource-handler-customResourceProvider",
+      "data": true
+    }
+  ],
+  "/CommunityOsInfraStack/LearnerGroup": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "LearnerGroup"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:59:26)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/ProGroup": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ProGroup"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:65:22)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/OrganizerGroup": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "OrganizerGroup"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:71:28)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/UserPoolId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserPoolId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:241:5)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/UserPoolClientId": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "UserPoolClientId"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:242:5)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/ApiUrl": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ApiUrl"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:243:5)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/BucketName": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BucketName"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:244:5)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSTable/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSTable9423371B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Table2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:16:19)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSKnowledgeBucket/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSKnowledgeBucket5F48D63B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:32:20)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    },
+    {
+      "type": "aws:cdk:analytics:mixin",
+      "data": {
+        "mixin": "aws-cdk-lib.aws_s3.mixins.BucketAutoDeleteObjects"
+      }
+    }
+  ],
+  "/CommunityOsInfraStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSUserPool/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSUserPool3FC34955"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new UserPool2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:40:22)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSUserPoolClient/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSUserPoolClient090FFAF3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new UserPoolClient2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:48:28)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityConnectionsTopic/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityConnectionsTopic33F31A5F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Topic2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:78:29)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityAlertsTopic/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityAlertsTopic447A3864"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Topic2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:82:24)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/AuthProfileHandler/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AuthProfileHandlerB0575ABD"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:97:31)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/MemoryHandler/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "MemoryHandler88AB4C1A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:105:26)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/ConnectHandler/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConnectHandler2FFD52D8"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:113:27)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/RadarHandler/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "RadarHandler0014FACE"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:121:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/EventHandler/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EventHandler0ACBF035"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:129:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApi69010782"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:168:17)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Endpoint": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiEndpoint0E3188EE"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:168:17)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CDKMetadata/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CDKMetadata"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib, node internals...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSKnowledgeBucket/Policy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSKnowledgeBucketPolicyEC41C497"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Bucket2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:32:20)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals..."
+      ]
+    },
+    {
+      "type": "aws:cdk:analytics:mixin",
+      "data": {
+        "mixin": "aws-cdk-lib.aws_s3.mixins.BucketPolicyStatements"
+      }
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSKnowledgeBucket/AutoDeleteObjectsCustomResource/Default": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSKnowledgeBucketAutoDeleteObjectsCustomResource4DF76C58"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/AuthProfileHandler/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AuthProfileHandlerServiceRole7B06BAD8"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:97:31)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/MemoryHandler/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "MemoryHandlerServiceRole3AAF3C51"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:105:26)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/ConnectHandler/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConnectHandlerServiceRole7E4A9B1F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:113:27)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/RadarHandler/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "RadarHandlerServiceRoleF6212B89"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:121:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/EventHandler/ServiceRole/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EventHandlerServiceRoleCBDA638E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new Function2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:129:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Deployment/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiDeployment619330CFea8128feaad7d6786b89bb63352e952e"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:168:17)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/DeploymentStage.prod/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiDeploymentStageprodD37C2FDB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:168:17)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/AuthProfileHandler/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "AuthProfileHandlerServiceRoleDefaultPolicy07D86544"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/MemoryHandler/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "MemoryHandlerServiceRoleDefaultPolicy4A997FEC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/ConnectHandler/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "ConnectHandlerServiceRoleDefaultPolicy7DE94863"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/RadarHandler/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "RadarHandlerServiceRoleDefaultPolicy32654EA1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/EventHandler/ServiceRole/DefaultPolicy/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "EventHandlerServiceRoleDefaultPolicyDAB06F93"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiOPTIONSFDDB6442"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...new RestApi2 in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:168:17)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/me/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApime10BBDC6C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:185:14)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/members/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimembersCFC2218E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:188:38)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/memory/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimemory844BC22E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:194:37)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connect/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnect8A05BB9B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:198:38)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connections/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnections78CC037F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:202:42)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApipros3DBE8B35"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:208:35)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradar6BF952E1"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:217:36)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/events/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApieventsEF2DAE1D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:231:37)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/notifications/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApinotificationsB4F50B84"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:238:14)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/me/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimeOPTIONS791A8BB0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:185:14)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/me/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..me": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimeGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETme0CF07FA2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:185:32)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/me/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..me": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimeGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETme855D9471"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:185:32)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/me/GET/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimeGET4F692186"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:185:32)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/members/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimembersOPTIONS395AC49E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:188:38)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimembersmemberIdB5906DB2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:189:50)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/memory/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimemoryOPTIONS90C75F49"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:194:37)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/memory/query/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimemoryqueryC24E448D"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:195:20)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connect/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectOPTIONS9CC95351"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:198:38)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connect/recommendations/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectrecommendationsDADD17B5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:199:21)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connections/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectionsOPTIONSEBB6F554"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:202:42)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connections/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..connections": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectionsPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTconnections40EEF363"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:203:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connections/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..connections": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectionsPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTconnectionsA6A7A893"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:203:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connections/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectionsPOST8538ACF4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:203:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connections/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..connections": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectionsGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETconnectionsE7D55563"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:204:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connections/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..connections": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectionsGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETconnections39C1B25E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:204:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connections/GET/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectionsGETF53F84BB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:204:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connections/{connectionId}/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectionsconnectionId57AFEB58"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:205:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosOPTIONSEE479C7B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:208:35)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosmemberId78E8B8B0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:209:44)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/requests/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosrequestsB15819F2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:213:46)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradarOPTIONS798D78F2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:217:36)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradarGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETradarA85F8A05"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:218:19)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradarGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETradarD9C51715"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:218:19)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/GET/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradarGET1DDCC600"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:218:19)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsCDE015FF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:220:40)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/topics/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradartopics66B50186"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:223:19)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/events/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradarevents3A4D67F5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:224:19)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/events/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApieventsOPTIONS04E55F18"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:231:37)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/events/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..events": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApieventsPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTeventsA72BD087"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:232:20)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/events/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..events": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApieventsPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTevents422413AF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:232:20)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/events/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApieventsPOSTCA7F518E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:232:20)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApieventseventId42634530"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:234:48)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/notifications/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApinotificationsOPTIONSCE74FD72"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...RootResource.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:238:14)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/notifications/test/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApinotificationstestB2DCEE58"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:238:43)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimembersmemberIdOPTIONS5BE8A8F3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:189:50)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..members.{memberId}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimembersmemberIdGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETmembersmemberId2DCFD4BD"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:190:26)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..members.{memberId}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimembersmemberIdGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETmembersmemberId8307E4E5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:190:26)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/GET/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimembersmemberIdGET3A871CF2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:190:26)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/PUT/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..members.{memberId}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimembersmemberIdPUTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPUTmembersmemberIdDF241744"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:191:26)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/PUT/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..members.{memberId}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimembersmemberIdPUTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPUTmembersmemberId8FC10AD9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:191:26)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/PUT/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimembersmemberIdPUT36E95DD2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:191:26)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/memory/query/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimemoryqueryOPTIONSC24A6960"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:195:20)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/memory/query/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..memory.query": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimemoryqueryPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTmemoryqueryB8F69DD3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:195:41)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/memory/query/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..memory.query": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimemoryqueryPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTmemoryquery4C9D1DB5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:195:41)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/memory/query/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApimemoryqueryPOST0EB351ED"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:195:41)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connect/recommendations/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectrecommendationsOPTIONSD1BB0A30"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:199:21)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connect/recommendations/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..connect.recommendations": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectrecommendationsPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTconnectrecommendations3E49971A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:199:52)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connect/recommendations/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..connect.recommendations": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectrecommendationsPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTconnectrecommendations37ECF4A0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:199:52)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connect/recommendations/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectrecommendationsPOST5886F548"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:199:52)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connections/{connectionId}/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectionsconnectionIdOPTIONSA564C379"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:205:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connections/{connectionId}/PUT/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..connections.{connectionId}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectionsconnectionIdPUTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPUTconnectionsconnectionIdAEBFF20F"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:205:55)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connections/{connectionId}/PUT/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..connections.{connectionId}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectionsconnectionIdPUTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPUTconnectionsconnectionId719BE651"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:205:55)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/connections/{connectionId}/PUT/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiconnectionsconnectionIdPUT1FB16891"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:205:55)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosmemberIdOPTIONS9A668AB4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:209:44)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/PUT/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..pros.{memberId}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosmemberIdPUTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPUTprosmemberIdF8980F24"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:210:23)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/PUT/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..pros.{memberId}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosmemberIdPUTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPUTprosmemberIdF09454A7"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:210:23)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/PUT/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosmemberIdPUT0D0E5B52"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:210:23)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/requests/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosmemberIdrequests13763F3E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:211:23)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/requests/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosrequestsOPTIONSC76C80B0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:213:46)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/requests/{requestId}/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosrequestsrequestIdB097909E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:214:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsOPTIONSA8576609"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:220:40)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.gaps": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETradargapsD2F1EC05"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:221:18)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.gaps": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETradargaps7C642DC0"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:221:18)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/GET/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsGET49EE851A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:221:18)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsgapId0179E5D5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:226:44)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/topics/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradartopicsOPTIONS4DDDA56C"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:223:19)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/topics/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.topics": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradartopicsGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETradartopicsB89DE50B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:223:41)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/topics/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.topics": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradartopicsGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETradartopicsA7020740"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:223:41)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/topics/GET/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradartopicsGETCE516CEB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:223:41)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/events/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradareventsOPTIONS456ED1D5"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:224:19)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/events/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.events": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradareventsGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETradarevents52CB4A25"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:224:41)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/events/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.events": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradareventsGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETradarevents7E27DD1A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:224:41)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/events/GET/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradareventsGET1ED32474"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:224:41)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApieventseventIdOPTIONSF234455E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:234:48)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/photos/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApieventseventIdphotosCC135FF2"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:235:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/notifications/test/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApinotificationstestOPTIONS3DFE31A3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:238:43)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/notifications/test/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..notifications.test": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApinotificationstestPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTnotificationstest32AD1CEF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:238:63)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/notifications/test/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..notifications.test": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApinotificationstestPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTnotificationstest1BA43F66"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:238:63)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/notifications/test/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApinotificationstestPOST5ED2DD49"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:238:63)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/requests/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosmemberIdrequestsOPTIONS1C53CCA8"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:211:23)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/requests/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..pros.{memberId}.requests": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosmemberIdrequestsGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETprosmemberIdrequestsA16821A6"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:211:47)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/requests/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..pros.{memberId}.requests": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosmemberIdrequestsGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETprosmemberIdrequests35B50CFC"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:211:47)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/requests/GET/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosmemberIdrequestsGET8A6E9A39"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:211:47)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/requests/{requestId}/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosrequestsrequestIdOPTIONS36FCE0D6"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:214:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/requests/{requestId}/PUT/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..pros.requests.{requestId}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosrequestsrequestIdPUTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPUTprosrequestsrequestId2F2FEC91"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:214:52)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/requests/{requestId}/PUT/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..pros.requests.{requestId}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosrequestsrequestIdPUTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPUTprosrequestsrequestId39FD05E9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:214:52)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/pros/requests/{requestId}/PUT/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiprosrequestsrequestIdPUT4839EFE9"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:214:52)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsgapIdOPTIONS31408869"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:226:44)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.gaps.{gapId}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsgapIdGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETradargapsgapIdB1948BAB"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:227:23)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.gaps.{gapId}": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsgapIdGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETradargapsgapId5069945E"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:227:23)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/GET/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsgapIdGET18C73834"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:227:23)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/actions/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsgapIdactions629E67E6"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:228:23)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/photos/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApieventseventIdphotosOPTIONS2956410B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:235:25)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/photos/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..events.{eventId}.photos": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApieventseventIdphotosPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTeventseventIdphotos9A8620AF"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:235:47)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/photos/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..events.{eventId}.photos": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApieventseventIdphotosPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTeventseventIdphotosBC94B4C4"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:235:47)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/photos/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApieventseventIdphotosPOST9AA51C2B"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:235:47)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/actions/OPTIONS/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsgapIdactionsOPTIONS1BA80487"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addResource in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:228:23)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)"
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/actions/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..radar.gaps.{gapId}.actions": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsgapIdactionsPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTradargapsgapIdactionsA4810E43"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:228:46)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/actions/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..radar.gaps.{gapId}.actions": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsgapIdactionsPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTradargapsgapIdactionsFF4883D3"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:228:46)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node..."
+      ]
+    }
+  ],
+  "/CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/actions/POST/Resource": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CommunityOSApiradargapsgapIdactionsPOST09A75B0A"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...WrappedClass.addMethod in aws-cdk-lib...",
+        "new CommunityOsInfraStack (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/lib/infra-stack.ts:228:46)",
+        "<anonymous> (/Users/patelmaitry/Documents/CommunityOS/backend/infrastructure/bin/infra.ts:7:1)",
+        "...node internals, ts-node, ts-node..."
+      ]
+    }
+  ]
+}

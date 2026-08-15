@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { seedResources } from '../mockData';
+import { api } from '../api';
 
 export default function DashboardPage({
   profile,
@@ -23,6 +24,9 @@ export default function DashboardPage({
 
   // Organizer Dashboard Local States
   const [sortKey, setSortKey] = useState('attendance');
+  const [showQuestionModal, setShowQuestionModal] = useState(false);
+  const [questionText, setQuestionText] = useState('');
+  const [questionOptions, setQuestionOptions] = useState(['', '', '', '']);
 
   // Organizer form state for managing community links
   const [newLinkName, setNewLinkName] = useState('');
@@ -38,51 +42,62 @@ export default function DashboardPage({
   const [shareSummary, setShareSummary] = useState('');
   const [shareTags, setShareTags] = useState('');
 
+  // Load connections on mount
+  useEffect(() => {
+    const fetchConnections = async () => {
+      const userId = profile.id || 'test-user-id';
+      const conns = await api.getConnections(userId, selectedRole, 'demo-community');
+      if (conns && Array.isArray(conns)) {
+        setMyMatches(conns.map(c => ({
+          id: c.connectionId,
+          name: c.proId,
+          role: c.status,
+          experienceLine: `Status: ${c.status}`
+        })));
+      }
+    };
+    fetchConnections();
+  }, [profile, selectedRole]);
+
   // Learner: Search Matchmaking
-  const handleLearnerSubmit = (e) => {
+  const handleLearnerSubmit = async (e) => {
     e.preventDefault();
     if (!learnerQuestion.trim()) return;
-    const query = learnerQuestion.toLowerCase();
     
-    // Find relevant resources
-    const matchedResources = seedResources
-      .filter(res => 
-        res.title.toLowerCase().includes(query) || 
-        res.tags.some(tag => query.includes(tag.toLowerCase()))
-      )
-      .slice(0, 2);
-
-    // Find helpers
-    let matchedPros = members
-      .filter(m => 
-        m.roles.includes('helping') && 
-        (m.skills.some(skill => query.includes(skill.toLowerCase())) || 
-         m.role.toLowerCase().includes(query))
-      )
-      .slice(0, 2);
-
-    if (matchedPros.length < 2) {
-      const extraPros = members
-        .filter(m => m.roles.includes('helping') && !matchedPros.some(p => p.id === m.id))
-        .slice(0, 2 - matchedPros.length);
-      matchedPros = [...matchedPros, ...extraPros];
-    }
-
+    const userId = profile.id || 'test-user-id';
+    
+    // Call backend API queryMemory
+    const memoryRes = await api.queryMemory(userId, selectedRole, 'demo-community', learnerQuestion);
+    
+    // Call backend API connectRecommendations
+    const recs = await api.getConnectRecommendations(userId, selectedRole, 'demo-community', learnerQuestion);
+    
     setLearnerResults({
-      resources: matchedResources,
-      helpers: matchedPros
+      resources: memoryRes.resources || [],
+      helpers: recs.map(r => ({
+        id: r.memberId,
+        name: r.name,
+        role: r.title,
+        experienceLine: r.reason
+      }))
     });
     setShowLearnerResults(true);
   };
 
-  const handleConnectHelper = (helper) => {
+  const handleConnectHelper = async (helper) => {
+    const userId = profile.id || 'test-user-id';
+    await api.requestConnection(userId, selectedRole, 'demo-community', helper.id);
+    
     if (!myMatches.some(m => m.id === helper.id)) {
       setMyMatches(prev => [...prev, helper]);
     }
   };
 
   // Pro: Accept / Decline matching requests
-  const handleProAction = (id, action) => {
+  const handleProAction = async (id, action) => {
+    const userId = profile.id || 'test-user-id';
+    await api.updateConnection(userId, selectedRole, 'demo-community', id, action === 'accept' ? 'accepted' : 'declined');
+    
     setProMatches(prev => prev.map(m => {
       if (m.id === id) {
         return { ...m, status: action };
@@ -150,6 +165,21 @@ export default function DashboardPage({
 
   const handleRemoveLink = (linkId) => {
     setCommunityLinks(communityLinks.filter(l => l.id !== linkId));
+  };
+
+  const handleOptionChange = (index, value) => {
+    const updated = [...questionOptions];
+    updated[index] = value;
+    setQuestionOptions(updated);
+  };
+
+  const handleQuestionSubmit = (e) => {
+    e.preventDefault();
+    if (!questionText.trim()) return;
+    // For now, just close and reset (could save to state or send to backend later)
+    setQuestionText('');
+    setQuestionOptions(['', '', '', '']);
+    setShowQuestionModal(false);
   };
 
   const sortedEvents = [...events].sort((a, b) => b[sortKey] - a[sortKey]);
@@ -537,6 +567,12 @@ export default function DashboardPage({
                 >
                   Questions
                 </button>
+                <button 
+                  onClick={() => setShowQuestionModal(true)}
+                  className="font-mono px-2 py-0.5 focus:outline-none cursor-pointer rounded-sm text-[#ff9900] border border-[#ff9900]/40 hover:border-[#ff9900] text-[10px] uppercase tracking-wider"
+                >
+                  + Add Question
+                </button>
               </div>
             </div>
 
@@ -583,6 +619,76 @@ export default function DashboardPage({
                 </tbody>
               </table>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Question Template Modal */}
+      {showQuestionModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center">
+          <div 
+            className="absolute inset-0 bg-black/60"
+            onClick={() => setShowQuestionModal(false)}
+          ></div>
+          <div className="relative bg-[#161b24] border border-[#353f4d] rounded-sm w-full max-w-md p-6 space-y-5">
+            <div className="flex justify-between items-center">
+              <h3 className="text-sm font-mono uppercase tracking-wider text-white">Create Question</h3>
+              <button 
+                onClick={() => setShowQuestionModal(false)}
+                className="text-neutral-400 hover:text-white text-lg leading-none cursor-pointer focus:outline-none"
+              >
+                &times;
+              </button>
+            </div>
+
+            <form onSubmit={handleQuestionSubmit} className="space-y-4">
+              <div>
+                <label className="block text-[10px] font-mono text-neutral-400 uppercase tracking-wider mb-1">
+                  Question
+                </label>
+                <textarea
+                  value={questionText}
+                  onChange={(e) => setQuestionText(e.target.value)}
+                  placeholder="Type your question here..."
+                  rows={3}
+                  className="w-full bg-[#0f141c] border border-[#353f4d] px-3 py-2 text-xs text-white focus:outline-none focus:border-[#ff9900] rounded-sm resize-none"
+                />
+              </div>
+
+              <div className="space-y-2">
+                <label className="block text-[10px] font-mono text-neutral-400 uppercase tracking-wider">
+                  Options
+                </label>
+                {questionOptions.map((opt, idx) => (
+                  <div key={idx} className="flex items-center space-x-2">
+                    <span className="text-[10px] font-mono text-neutral-500 w-4">{String.fromCharCode(65 + idx)}.</span>
+                    <input
+                      type="text"
+                      value={opt}
+                      onChange={(e) => handleOptionChange(idx, e.target.value)}
+                      placeholder={`Option ${idx + 1}`}
+                      className="flex-1 bg-[#0f141c] border border-[#353f4d] px-3 py-1.5 text-xs text-white focus:outline-none focus:border-[#ff9900] rounded-sm"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex justify-end space-x-3 pt-2">
+                <button
+                  type="button"
+                  onClick={() => setShowQuestionModal(false)}
+                  className="font-mono text-xs uppercase tracking-wider text-neutral-400 border border-[#353f4d] px-3 py-1.5 rounded-sm hover:bg-[#0f141c] cursor-pointer focus:outline-none"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="font-mono text-xs uppercase tracking-wider text-white bg-[#ff9900] border border-[#ff9900] px-3 py-1.5 rounded-sm hover:bg-[#ec7211] font-bold cursor-pointer focus:outline-none"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

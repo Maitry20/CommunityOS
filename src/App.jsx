@@ -34,10 +34,52 @@ export default function App() {
   const [newHelpWhen, setNewHelpWhen] = useState('');
   const [showProfileDrawer, setShowProfileDrawer] = useState(false);
 
-  // Stored users database (localStorage backed)
   const [users, setUsers] = useState(() => {
     const saved = localStorage.getItem('community_os_users');
-    return saved ? JSON.parse(saved) : [];
+    if (saved) return JSON.parse(saved);
+    const defaultUsers = [
+      {
+        id: "m-11",
+        name: "Emma Smith",
+        email: "learner@example.com",
+        password: "password",
+        role: "learner",
+        roleTitle: "Learner",
+        skills: ["rag", "caching"],
+        focus: "Retrieving history vectors dynamically for conversational memory",
+        community: "demo-community",
+        pic: null
+      },
+      {
+        id: "m-1",
+        name: "Elena Rostova",
+        email: "pro@example.com",
+        password: "password",
+        role: "pro",
+        roleTitle: "Staff AI Engineer",
+        skills: ["rag", "evaluation", "guardrails"],
+        focus: "Optimizing real-time LLM validation latency",
+        community: "demo-community",
+        pic: null,
+        pastHelp: [
+          { id: 1, topic: "Production RAG evaluation", when: "2 months ago" }
+        ]
+      },
+      {
+        id: "m-5",
+        name: "Tariq Mahmood",
+        email: "organizer@example.com",
+        password: "password",
+        role: "organizer",
+        roleTitle: "Platform Engineer",
+        skills: ["vllm", "local-llm", "inference"],
+        focus: "Scaling vLLM throughput under concurrent requests",
+        community: "demo-community",
+        pic: null
+      }
+    ];
+    localStorage.setItem('community_os_users', JSON.stringify(defaultUsers));
+    return defaultUsers;
   });
 
   // Login/Sign In Flow States
@@ -197,13 +239,6 @@ export default function App() {
 
         {location.pathname !== '/' ? (
           <div className="flex items-center space-x-4">
-            {/* Region Selector */}
-            <div className="flex items-center space-x-1.5 text-xs text-neutral-300 font-mono bg-[#2b3947] border border-[#415164] px-2.5 py-1 rounded-sm cursor-pointer hover:border-[#ff9900]">
-              <span className="w-1.5 h-1.5 bg-[#0972d3] rounded-full animate-pulse"></span>
-              <span>N. Virginia</span>
-              <span className="text-[9px] text-[#ff9900] font-bold">us-east-1</span>
-            </div>
-
             <span className="text-xs font-mono bg-[#2b3947] px-2.5 py-1 text-neutral-300 border border-[#415164] uppercase">
               Role: {selectedRole}
             </span>

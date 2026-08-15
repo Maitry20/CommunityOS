@@ -1,0 +1,51 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6": {
+      "displayName": "CommunityOsInfraStack/Custom::S3AutoDeleteObjectsCustomResourceProvider Code",
+      "source": {
+        "path": "asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "110836100897-us-east-1-362bb755": {
+          "bucketName": "cdk-hnb659fds-assets-110836100897-us-east-1",
+          "objectKey": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::110836100897:role/cdk-hnb659fds-file-publishing-role-110836100897-us-east-1"
+        }
+      }
+    },
+    "20d9511b47ae72dacb1e9a1e29bf95d749ab0e0b59f4f42cf7d671e098aab136": {
+      "displayName": "AuthProfileHandler/Code",
+      "source": {
+        "path": "asset.20d9511b47ae72dacb1e9a1e29bf95d749ab0e0b59f4f42cf7d671e098aab136",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "110836100897-us-east-1-010f8b3d": {
+          "bucketName": "cdk-hnb659fds-assets-110836100897-us-east-1",
+          "objectKey": "20d9511b47ae72dacb1e9a1e29bf95d749ab0e0b59f4f42cf7d671e098aab136.zip",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::110836100897:role/cdk-hnb659fds-file-publishing-role-110836100897-us-east-1"
+        }
+      }
+    },
+    "66416fa322985430ca24ab9667cdfa5460f54a55b040c8171da80ade7e908ac6": {
+      "displayName": "CommunityOsInfraStack Template",
+      "source": {
+        "path": "CommunityOsInfraStack.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "110836100897-us-east-1-ba5ed698": {
+          "bucketName": "cdk-hnb659fds-assets-110836100897-us-east-1",
+          "objectKey": "66416fa322985430ca24ab9667cdfa5460f54a55b040c8171da80ade7e908ac6.json",
+          "region": "us-east-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::110836100897:role/cdk-hnb659fds-file-publishing-role-110836100897-us-east-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

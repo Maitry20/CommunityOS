@@ -1,0 +1,4805 @@
+{
+ "Resources": {
+  "CommunityOSTable9423371B": {
+   "Type": "AWS::DynamoDB::Table",
+   "Properties": {
+    "AttributeDefinitions": [
+     {
+      "AttributeName": "PK",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "SK",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "GSI1PK",
+      "AttributeType": "S"
+     },
+     {
+      "AttributeName": "GSI1SK",
+      "AttributeType": "S"
+     }
+    ],
+    "BillingMode": "PAY_PER_REQUEST",
+    "GlobalSecondaryIndexes": [
+     {
+      "IndexName": "GSI1",
+      "KeySchema": [
+       {
+        "AttributeName": "GSI1PK",
+        "KeyType": "HASH"
+       },
+       {
+        "AttributeName": "GSI1SK",
+        "KeyType": "RANGE"
+       }
+      ],
+      "Projection": {
+       "ProjectionType": "ALL"
+      }
+     }
+    ],
+    "KeySchema": [
+     {
+      "AttributeName": "PK",
+      "KeyType": "HASH"
+     },
+     {
+      "AttributeName": "SK",
+      "KeyType": "RANGE"
+     }
+    ],
+    "TableName": "CommunityOSTable"
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSTable/Resource"
+   }
+  },
+  "CommunityOSKnowledgeBucket5F48D63B": {
+   "Type": "AWS::S3::Bucket",
+   "Properties": {
+    "BucketEncryption": {
+     "ServerSideEncryptionConfiguration": [
+      {
+       "ServerSideEncryptionByDefault": {
+        "SSEAlgorithm": "AES256"
+       }
+      }
+     ]
+    },
+    "PublicAccessBlockConfiguration": {
+     "BlockPublicAcls": true,
+     "BlockPublicPolicy": true,
+     "IgnorePublicAcls": true,
+     "RestrictPublicBuckets": true
+    },
+    "Tags": [
+     {
+      "Key": "aws-cdk:auto-delete-objects",
+      "Value": "true"
+     }
+    ]
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSKnowledgeBucket/Resource"
+   }
+  },
+  "CommunityOSKnowledgeBucketPolicyEC41C497": {
+   "Type": "AWS::S3::BucketPolicy",
+   "Properties": {
+    "Bucket": {
+     "Ref": "CommunityOSKnowledgeBucket5F48D63B"
+    },
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "s3:DeleteObject*",
+        "s3:GetBucket*",
+        "s3:List*",
+        "s3:PutBucketPolicy"
+       ],
+       "Effect": "Allow",
+       "Principal": {
+        "AWS": {
+         "Fn::GetAtt": [
+          "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+          "Arn"
+         ]
+        }
+       },
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CommunityOSKnowledgeBucket5F48D63B",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CommunityOSKnowledgeBucket5F48D63B",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSKnowledgeBucket/Policy/Resource"
+   }
+  },
+  "CommunityOSKnowledgeBucketAutoDeleteObjectsCustomResource4DF76C58": {
+   "Type": "Custom::S3AutoDeleteObjects",
+   "Properties": {
+    "ServiceToken": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+      "Arn"
+     ]
+    },
+    "BucketName": {
+     "Ref": "CommunityOSKnowledgeBucket5F48D63B"
+    }
+   },
+   "DependsOn": [
+    "CommunityOSKnowledgeBucketPolicyEC41C497"
+   ],
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSKnowledgeBucket/AutoDeleteObjectsCustomResource/Default"
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Version": "2012-10-17",
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ]
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role"
+   }
+  },
+  "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-110836100897-us-east-1",
+     "S3Key": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip"
+    },
+    "Timeout": 900,
+    "MemorySize": 128,
+    "Handler": "index.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+      "Arn"
+     ]
+    },
+    "Runtime": "nodejs24.x",
+    "Description": {
+     "Fn::Join": [
+      "",
+      [
+       "Lambda function for auto-deleting objects in ",
+       {
+        "Ref": "CommunityOSKnowledgeBucket5F48D63B"
+       },
+       " S3 bucket."
+      ]
+     ]
+    }
+   },
+   "DependsOn": [
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
+    "aws:asset:path": "asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+    "aws:asset:property": "Code"
+   }
+  },
+  "CommunityOSUserPool3FC34955": {
+   "Type": "AWS::Cognito::UserPool",
+   "Properties": {
+    "AccountRecoverySetting": {
+     "RecoveryMechanisms": [
+      {
+       "Name": "verified_phone_number",
+       "Priority": 1
+      },
+      {
+       "Name": "verified_email",
+       "Priority": 2
+      }
+     ]
+    },
+    "AdminCreateUserConfig": {
+     "AllowAdminCreateUserOnly": false
+    },
+    "AutoVerifiedAttributes": [
+     "email"
+    ],
+    "EmailVerificationMessage": "The verification code to your new account is {####}",
+    "EmailVerificationSubject": "Verify your new account",
+    "SmsVerificationMessage": "The verification code to your new account is {####}",
+    "UserPoolName": "community-os-users",
+    "UsernameAttributes": [
+     "email"
+    ],
+    "VerificationMessageTemplate": {
+     "DefaultEmailOption": "CONFIRM_WITH_CODE",
+     "EmailMessage": "The verification code to your new account is {####}",
+     "EmailSubject": "Verify your new account",
+     "SmsMessage": "The verification code to your new account is {####}"
+    }
+   },
+   "UpdateReplacePolicy": "Delete",
+   "DeletionPolicy": "Delete",
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSUserPool/Resource"
+   }
+  },
+  "CommunityOSUserPoolClient090FFAF3": {
+   "Type": "AWS::Cognito::UserPoolClient",
+   "Properties": {
+    "AllowedOAuthFlows": [
+     "implicit",
+     "code"
+    ],
+    "AllowedOAuthFlowsUserPoolClient": true,
+    "AllowedOAuthScopes": [
+     "profile",
+     "phone",
+     "email",
+     "openid",
+     "aws.cognito.signin.user.admin"
+    ],
+    "CallbackURLs": [
+     "https://example.com"
+    ],
+    "ExplicitAuthFlows": [
+     "ALLOW_USER_PASSWORD_AUTH",
+     "ALLOW_ADMIN_USER_PASSWORD_AUTH",
+     "ALLOW_CUSTOM_AUTH",
+     "ALLOW_USER_SRP_AUTH",
+     "ALLOW_REFRESH_TOKEN_AUTH"
+    ],
+    "SupportedIdentityProviders": [
+     "COGNITO"
+    ],
+    "UserPoolId": {
+     "Ref": "CommunityOSUserPool3FC34955"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSUserPoolClient/Resource"
+   }
+  },
+  "LearnerGroup": {
+   "Type": "AWS::Cognito::UserPoolGroup",
+   "Properties": {
+    "Description": "Learner role group",
+    "GroupName": "Learner",
+    "UserPoolId": {
+     "Ref": "CommunityOSUserPool3FC34955"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/LearnerGroup"
+   }
+  },
+  "ProGroup": {
+   "Type": "AWS::Cognito::UserPoolGroup",
+   "Properties": {
+    "Description": "Pro role group",
+    "GroupName": "Pro",
+    "UserPoolId": {
+     "Ref": "CommunityOSUserPool3FC34955"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/ProGroup"
+   }
+  },
+  "OrganizerGroup": {
+   "Type": "AWS::Cognito::UserPoolGroup",
+   "Properties": {
+    "Description": "Organizer role group",
+    "GroupName": "Organizer",
+    "UserPoolId": {
+     "Ref": "CommunityOSUserPool3FC34955"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/OrganizerGroup"
+   }
+  },
+  "CommunityConnectionsTopic33F31A5F": {
+   "Type": "AWS::SNS::Topic",
+   "Properties": {
+    "TopicName": "community-connections"
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityConnectionsTopic/Resource"
+   }
+  },
+  "CommunityAlertsTopic447A3864": {
+   "Type": "AWS::SNS::Topic",
+   "Properties": {
+    "TopicName": "community-alerts"
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityAlertsTopic/Resource"
+   }
+  },
+  "AuthProfileHandlerServiceRole7B06BAD8": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/AuthProfileHandler/ServiceRole/Resource"
+   }
+  },
+  "AuthProfileHandlerServiceRoleDefaultPolicy07D86544": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:UpdateItem"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CommunityOSTable9423371B",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CommunityOSTable9423371B",
+             "Arn"
+            ]
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "AuthProfileHandlerServiceRoleDefaultPolicy07D86544",
+    "Roles": [
+     {
+      "Ref": "AuthProfileHandlerServiceRole7B06BAD8"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/AuthProfileHandler/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "AuthProfileHandlerB0575ABD": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-110836100897-us-east-1",
+     "S3Key": "20d9511b47ae72dacb1e9a1e29bf95d749ab0e0b59f4f42cf7d671e098aab136.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "TABLE_NAME": {
+       "Ref": "CommunityOSTable9423371B"
+      },
+      "BUCKET_NAME": {
+       "Ref": "CommunityOSKnowledgeBucket5F48D63B"
+      },
+      "CONNECTION_SNS_TOPIC_ARN": {
+       "Ref": "CommunityConnectionsTopic33F31A5F"
+      },
+      "ALERT_SNS_TOPIC_ARN": {
+       "Ref": "CommunityAlertsTopic447A3864"
+      },
+      "BEDROCK_KNOWLEDGE_BASE_ID": "dummy-kb-id"
+     }
+    },
+    "Handler": "auth_profile.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "AuthProfileHandlerServiceRole7B06BAD8",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "AuthProfileHandlerServiceRoleDefaultPolicy07D86544",
+    "AuthProfileHandlerServiceRole7B06BAD8"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/AuthProfileHandler/Resource",
+    "aws:asset:path": "asset.20d9511b47ae72dacb1e9a1e29bf95d749ab0e0b59f4f42cf7d671e098aab136",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "MemoryHandlerServiceRole3AAF3C51": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/MemoryHandler/ServiceRole/Resource"
+   }
+  },
+  "MemoryHandlerServiceRoleDefaultPolicy4A997FEC": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:UpdateItem"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CommunityOSTable9423371B",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CommunityOSTable9423371B",
+             "Arn"
+            ]
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CommunityOSKnowledgeBucket5F48D63B",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CommunityOSKnowledgeBucket5F48D63B",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:Retrieve",
+        "bedrock:RetrieveAndGenerate"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "MemoryHandlerServiceRoleDefaultPolicy4A997FEC",
+    "Roles": [
+     {
+      "Ref": "MemoryHandlerServiceRole3AAF3C51"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/MemoryHandler/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "MemoryHandler88AB4C1A": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-110836100897-us-east-1",
+     "S3Key": "20d9511b47ae72dacb1e9a1e29bf95d749ab0e0b59f4f42cf7d671e098aab136.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "TABLE_NAME": {
+       "Ref": "CommunityOSTable9423371B"
+      },
+      "BUCKET_NAME": {
+       "Ref": "CommunityOSKnowledgeBucket5F48D63B"
+      },
+      "CONNECTION_SNS_TOPIC_ARN": {
+       "Ref": "CommunityConnectionsTopic33F31A5F"
+      },
+      "ALERT_SNS_TOPIC_ARN": {
+       "Ref": "CommunityAlertsTopic447A3864"
+      },
+      "BEDROCK_KNOWLEDGE_BASE_ID": "dummy-kb-id"
+     }
+    },
+    "Handler": "memory.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "MemoryHandlerServiceRole3AAF3C51",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "MemoryHandlerServiceRoleDefaultPolicy4A997FEC",
+    "MemoryHandlerServiceRole3AAF3C51"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/MemoryHandler/Resource",
+    "aws:asset:path": "asset.20d9511b47ae72dacb1e9a1e29bf95d749ab0e0b59f4f42cf7d671e098aab136",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "ConnectHandlerServiceRole7E4A9B1F": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/ConnectHandler/ServiceRole/Resource"
+   }
+  },
+  "ConnectHandlerServiceRoleDefaultPolicy7DE94863": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:UpdateItem"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CommunityOSTable9423371B",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CommunityOSTable9423371B",
+             "Arn"
+            ]
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "sns:Publish",
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "CommunityConnectionsTopic33F31A5F"
+       }
+      },
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:Retrieve",
+        "bedrock:RetrieveAndGenerate"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "ConnectHandlerServiceRoleDefaultPolicy7DE94863",
+    "Roles": [
+     {
+      "Ref": "ConnectHandlerServiceRole7E4A9B1F"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/ConnectHandler/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "ConnectHandler2FFD52D8": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-110836100897-us-east-1",
+     "S3Key": "20d9511b47ae72dacb1e9a1e29bf95d749ab0e0b59f4f42cf7d671e098aab136.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "TABLE_NAME": {
+       "Ref": "CommunityOSTable9423371B"
+      },
+      "BUCKET_NAME": {
+       "Ref": "CommunityOSKnowledgeBucket5F48D63B"
+      },
+      "CONNECTION_SNS_TOPIC_ARN": {
+       "Ref": "CommunityConnectionsTopic33F31A5F"
+      },
+      "ALERT_SNS_TOPIC_ARN": {
+       "Ref": "CommunityAlertsTopic447A3864"
+      },
+      "BEDROCK_KNOWLEDGE_BASE_ID": "dummy-kb-id"
+     }
+    },
+    "Handler": "connect.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "ConnectHandlerServiceRole7E4A9B1F",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "ConnectHandlerServiceRoleDefaultPolicy7DE94863",
+    "ConnectHandlerServiceRole7E4A9B1F"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/ConnectHandler/Resource",
+    "aws:asset:path": "asset.20d9511b47ae72dacb1e9a1e29bf95d749ab0e0b59f4f42cf7d671e098aab136",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "RadarHandlerServiceRoleF6212B89": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/RadarHandler/ServiceRole/Resource"
+   }
+  },
+  "RadarHandlerServiceRoleDefaultPolicy32654EA1": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:UpdateItem"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CommunityOSTable9423371B",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CommunityOSTable9423371B",
+             "Arn"
+            ]
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "sns:Publish",
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "CommunityAlertsTopic447A3864"
+       }
+      },
+      {
+       "Action": [
+        "bedrock:InvokeModel",
+        "bedrock:Retrieve",
+        "bedrock:RetrieveAndGenerate"
+       ],
+       "Effect": "Allow",
+       "Resource": "*"
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "RadarHandlerServiceRoleDefaultPolicy32654EA1",
+    "Roles": [
+     {
+      "Ref": "RadarHandlerServiceRoleF6212B89"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/RadarHandler/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "RadarHandler0014FACE": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-110836100897-us-east-1",
+     "S3Key": "20d9511b47ae72dacb1e9a1e29bf95d749ab0e0b59f4f42cf7d671e098aab136.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "TABLE_NAME": {
+       "Ref": "CommunityOSTable9423371B"
+      },
+      "BUCKET_NAME": {
+       "Ref": "CommunityOSKnowledgeBucket5F48D63B"
+      },
+      "CONNECTION_SNS_TOPIC_ARN": {
+       "Ref": "CommunityConnectionsTopic33F31A5F"
+      },
+      "ALERT_SNS_TOPIC_ARN": {
+       "Ref": "CommunityAlertsTopic447A3864"
+      },
+      "BEDROCK_KNOWLEDGE_BASE_ID": "dummy-kb-id"
+     }
+    },
+    "Handler": "radar.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "RadarHandlerServiceRoleF6212B89",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "RadarHandlerServiceRoleDefaultPolicy32654EA1",
+    "RadarHandlerServiceRoleF6212B89"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/RadarHandler/Resource",
+    "aws:asset:path": "asset.20d9511b47ae72dacb1e9a1e29bf95d749ab0e0b59f4f42cf7d671e098aab136",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "EventHandlerServiceRoleCBDA638E": {
+   "Type": "AWS::IAM::Role",
+   "Properties": {
+    "AssumeRolePolicyDocument": {
+     "Statement": [
+      {
+       "Action": "sts:AssumeRole",
+       "Effect": "Allow",
+       "Principal": {
+        "Service": "lambda.amazonaws.com"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "ManagedPolicyArns": [
+     {
+      "Fn::Join": [
+       "",
+       [
+        "arn:",
+        {
+         "Ref": "AWS::Partition"
+        },
+        ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+       ]
+      ]
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/EventHandler/ServiceRole/Resource"
+   }
+  },
+  "EventHandlerServiceRoleDefaultPolicyDAB06F93": {
+   "Type": "AWS::IAM::Policy",
+   "Properties": {
+    "PolicyDocument": {
+     "Statement": [
+      {
+       "Action": [
+        "dynamodb:BatchGetItem",
+        "dynamodb:BatchWriteItem",
+        "dynamodb:ConditionCheckItem",
+        "dynamodb:DeleteItem",
+        "dynamodb:DescribeTable",
+        "dynamodb:GetItem",
+        "dynamodb:GetRecords",
+        "dynamodb:GetShardIterator",
+        "dynamodb:PutItem",
+        "dynamodb:Query",
+        "dynamodb:Scan",
+        "dynamodb:UpdateItem"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CommunityOSTable9423371B",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CommunityOSTable9423371B",
+             "Arn"
+            ]
+           },
+           "/index/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": [
+        "s3:Abort*",
+        "s3:DeleteObject*",
+        "s3:GetBucket*",
+        "s3:GetObject*",
+        "s3:List*",
+        "s3:PutObject",
+        "s3:PutObjectLegalHold",
+        "s3:PutObjectRetention",
+        "s3:PutObjectTagging",
+        "s3:PutObjectVersionTagging"
+       ],
+       "Effect": "Allow",
+       "Resource": [
+        {
+         "Fn::GetAtt": [
+          "CommunityOSKnowledgeBucket5F48D63B",
+          "Arn"
+         ]
+        },
+        {
+         "Fn::Join": [
+          "",
+          [
+           {
+            "Fn::GetAtt": [
+             "CommunityOSKnowledgeBucket5F48D63B",
+             "Arn"
+            ]
+           },
+           "/*"
+          ]
+         ]
+        }
+       ]
+      },
+      {
+       "Action": "sns:Publish",
+       "Effect": "Allow",
+       "Resource": {
+        "Ref": "CommunityAlertsTopic447A3864"
+       }
+      }
+     ],
+     "Version": "2012-10-17"
+    },
+    "PolicyName": "EventHandlerServiceRoleDefaultPolicyDAB06F93",
+    "Roles": [
+     {
+      "Ref": "EventHandlerServiceRoleCBDA638E"
+     }
+    ]
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/EventHandler/ServiceRole/DefaultPolicy/Resource"
+   }
+  },
+  "EventHandler0ACBF035": {
+   "Type": "AWS::Lambda::Function",
+   "Properties": {
+    "Code": {
+     "S3Bucket": "cdk-hnb659fds-assets-110836100897-us-east-1",
+     "S3Key": "20d9511b47ae72dacb1e9a1e29bf95d749ab0e0b59f4f42cf7d671e098aab136.zip"
+    },
+    "Environment": {
+     "Variables": {
+      "TABLE_NAME": {
+       "Ref": "CommunityOSTable9423371B"
+      },
+      "BUCKET_NAME": {
+       "Ref": "CommunityOSKnowledgeBucket5F48D63B"
+      },
+      "CONNECTION_SNS_TOPIC_ARN": {
+       "Ref": "CommunityConnectionsTopic33F31A5F"
+      },
+      "ALERT_SNS_TOPIC_ARN": {
+       "Ref": "CommunityAlertsTopic447A3864"
+      },
+      "BEDROCK_KNOWLEDGE_BASE_ID": "dummy-kb-id"
+     }
+    },
+    "Handler": "events.handler",
+    "Role": {
+     "Fn::GetAtt": [
+      "EventHandlerServiceRoleCBDA638E",
+      "Arn"
+     ]
+    },
+    "Runtime": "python3.12",
+    "Timeout": 30
+   },
+   "DependsOn": [
+    "EventHandlerServiceRoleDefaultPolicyDAB06F93",
+    "EventHandlerServiceRoleCBDA638E"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/EventHandler/Resource",
+    "aws:asset:path": "asset.20d9511b47ae72dacb1e9a1e29bf95d749ab0e0b59f4f42cf7d671e098aab136",
+    "aws:asset:is-bundled": false,
+    "aws:asset:property": "Code"
+   }
+  },
+  "CommunityOSApi69010782": {
+   "Type": "AWS::ApiGateway::RestApi",
+   "Properties": {
+    "Name": "CommunityOS API"
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Resource"
+   }
+  },
+  "CommunityOSApiDeployment619330CFea8128feaad7d6786b89bb63352e952e": {
+   "Type": "AWS::ApiGateway::Deployment",
+   "Properties": {
+    "Description": "Automatically created by the RestApi construct",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "DependsOn": [
+    "CommunityOSApiconnectOPTIONS9CC95351",
+    "CommunityOSApiconnectrecommendationsOPTIONSD1BB0A30",
+    "CommunityOSApiconnectrecommendationsPOST5886F548",
+    "CommunityOSApiconnectrecommendationsDADD17B5",
+    "CommunityOSApiconnect8A05BB9B",
+    "CommunityOSApiconnectionsconnectionIdOPTIONSA564C379",
+    "CommunityOSApiconnectionsconnectionIdPUT1FB16891",
+    "CommunityOSApiconnectionsconnectionId57AFEB58",
+    "CommunityOSApiconnectionsGETF53F84BB",
+    "CommunityOSApiconnectionsOPTIONSEBB6F554",
+    "CommunityOSApiconnectionsPOST8538ACF4",
+    "CommunityOSApiconnections78CC037F",
+    "CommunityOSApieventseventIdOPTIONSF234455E",
+    "CommunityOSApieventseventIdphotosOPTIONS2956410B",
+    "CommunityOSApieventseventIdphotosPOST9AA51C2B",
+    "CommunityOSApieventseventIdphotosCC135FF2",
+    "CommunityOSApieventseventId42634530",
+    "CommunityOSApieventsOPTIONS04E55F18",
+    "CommunityOSApieventsPOSTCA7F518E",
+    "CommunityOSApieventsEF2DAE1D",
+    "CommunityOSApimeGET4F692186",
+    "CommunityOSApimeOPTIONS791A8BB0",
+    "CommunityOSApime10BBDC6C",
+    "CommunityOSApimembersmemberIdGET3A871CF2",
+    "CommunityOSApimembersmemberIdOPTIONS5BE8A8F3",
+    "CommunityOSApimembersmemberIdPUT36E95DD2",
+    "CommunityOSApimembersmemberIdB5906DB2",
+    "CommunityOSApimembersOPTIONS395AC49E",
+    "CommunityOSApimembersCFC2218E",
+    "CommunityOSApimemoryOPTIONS90C75F49",
+    "CommunityOSApimemoryqueryOPTIONSC24A6960",
+    "CommunityOSApimemoryqueryPOST0EB351ED",
+    "CommunityOSApimemoryqueryC24E448D",
+    "CommunityOSApimemory844BC22E",
+    "CommunityOSApinotificationsOPTIONSCE74FD72",
+    "CommunityOSApinotificationsB4F50B84",
+    "CommunityOSApinotificationstestOPTIONS3DFE31A3",
+    "CommunityOSApinotificationstestPOST5ED2DD49",
+    "CommunityOSApinotificationstestB2DCEE58",
+    "CommunityOSApiOPTIONSFDDB6442",
+    "CommunityOSApiprosmemberIdOPTIONS9A668AB4",
+    "CommunityOSApiprosmemberIdPUT0D0E5B52",
+    "CommunityOSApiprosmemberIdrequestsGET8A6E9A39",
+    "CommunityOSApiprosmemberIdrequestsOPTIONS1C53CCA8",
+    "CommunityOSApiprosmemberIdrequests13763F3E",
+    "CommunityOSApiprosmemberId78E8B8B0",
+    "CommunityOSApiprosOPTIONSEE479C7B",
+    "CommunityOSApiprosrequestsrequestIdOPTIONS36FCE0D6",
+    "CommunityOSApiprosrequestsrequestIdPUT4839EFE9",
+    "CommunityOSApiprosrequestsrequestIdB097909E",
+    "CommunityOSApiprosrequestsOPTIONSC76C80B0",
+    "CommunityOSApiprosrequestsB15819F2",
+    "CommunityOSApipros3DBE8B35",
+    "CommunityOSApiradareventsGET1ED32474",
+    "CommunityOSApiradareventsOPTIONS456ED1D5",
+    "CommunityOSApiradarevents3A4D67F5",
+    "CommunityOSApiradargapsgapIdactionsOPTIONS1BA80487",
+    "CommunityOSApiradargapsgapIdactionsPOST09A75B0A",
+    "CommunityOSApiradargapsgapIdactions629E67E6",
+    "CommunityOSApiradargapsgapIdGET18C73834",
+    "CommunityOSApiradargapsgapIdOPTIONS31408869",
+    "CommunityOSApiradargapsgapId0179E5D5",
+    "CommunityOSApiradargapsGET49EE851A",
+    "CommunityOSApiradargapsOPTIONSA8576609",
+    "CommunityOSApiradargapsCDE015FF",
+    "CommunityOSApiradarGET1DDCC600",
+    "CommunityOSApiradarOPTIONS798D78F2",
+    "CommunityOSApiradar6BF952E1",
+    "CommunityOSApiradartopicsGETCE516CEB",
+    "CommunityOSApiradartopicsOPTIONS4DDDA56C",
+    "CommunityOSApiradartopics66B50186"
+   ],
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Deployment/Resource",
+    "aws:cdk:do-not-refactor": true
+   }
+  },
+  "CommunityOSApiDeploymentStageprodD37C2FDB": {
+   "Type": "AWS::ApiGateway::Stage",
+   "Properties": {
+    "DeploymentId": {
+     "Ref": "CommunityOSApiDeployment619330CFea8128feaad7d6786b89bb63352e952e"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    },
+    "StageName": "prod"
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/DeploymentStage.prod/Resource"
+   }
+  },
+  "CommunityOSApiOPTIONSFDDB6442": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Fn::GetAtt": [
+      "CommunityOSApi69010782",
+      "RootResourceId"
+     ]
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApime10BBDC6C": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "CommunityOSApi69010782",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "me",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/me/Resource"
+   }
+  },
+  "CommunityOSApimeOPTIONS791A8BB0": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApime10BBDC6C"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/me/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApimeGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETme0CF07FA2": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthProfileHandlerB0575ABD",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/GET/me"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/me/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..me"
+   }
+  },
+  "CommunityOSApimeGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETme855D9471": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthProfileHandlerB0575ABD",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/GET/me"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/me/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..me"
+   }
+  },
+  "CommunityOSApimeGET4F692186": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AuthProfileHandlerB0575ABD",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApime10BBDC6C"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/me/GET/Resource"
+   }
+  },
+  "CommunityOSApimembersCFC2218E": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "CommunityOSApi69010782",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "members",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/members/Resource"
+   }
+  },
+  "CommunityOSApimembersOPTIONS395AC49E": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApimembersCFC2218E"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/members/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApimembersmemberIdB5906DB2": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApimembersCFC2218E"
+    },
+    "PathPart": "{memberId}",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/Resource"
+   }
+  },
+  "CommunityOSApimembersmemberIdOPTIONS5BE8A8F3": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApimembersmemberIdB5906DB2"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApimembersmemberIdGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETmembersmemberId2DCFD4BD": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthProfileHandlerB0575ABD",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/GET/members/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..members.{memberId}"
+   }
+  },
+  "CommunityOSApimembersmemberIdGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETmembersmemberId8307E4E5": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthProfileHandlerB0575ABD",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/GET/members/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..members.{memberId}"
+   }
+  },
+  "CommunityOSApimembersmemberIdGET3A871CF2": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AuthProfileHandlerB0575ABD",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApimembersmemberIdB5906DB2"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/GET/Resource"
+   }
+  },
+  "CommunityOSApimembersmemberIdPUTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPUTmembersmemberIdDF241744": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthProfileHandlerB0575ABD",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/PUT/members/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/PUT/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..members.{memberId}"
+   }
+  },
+  "CommunityOSApimembersmemberIdPUTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPUTmembersmemberId8FC10AD9": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthProfileHandlerB0575ABD",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/PUT/members/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/PUT/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..members.{memberId}"
+   }
+  },
+  "CommunityOSApimembersmemberIdPUT36E95DD2": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "PUT",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AuthProfileHandlerB0575ABD",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApimembersmemberIdB5906DB2"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/members/{memberId}/PUT/Resource"
+   }
+  },
+  "CommunityOSApimemory844BC22E": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "CommunityOSApi69010782",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "memory",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/memory/Resource"
+   }
+  },
+  "CommunityOSApimemoryOPTIONS90C75F49": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApimemory844BC22E"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/memory/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApimemoryqueryC24E448D": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApimemory844BC22E"
+    },
+    "PathPart": "query",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/memory/query/Resource"
+   }
+  },
+  "CommunityOSApimemoryqueryOPTIONSC24A6960": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApimemoryqueryC24E448D"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/memory/query/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApimemoryqueryPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTmemoryqueryB8F69DD3": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "MemoryHandler88AB4C1A",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/POST/memory/query"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/memory/query/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..memory.query"
+   }
+  },
+  "CommunityOSApimemoryqueryPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTmemoryquery4C9D1DB5": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "MemoryHandler88AB4C1A",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/POST/memory/query"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/memory/query/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..memory.query"
+   }
+  },
+  "CommunityOSApimemoryqueryPOST0EB351ED": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "MemoryHandler88AB4C1A",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApimemoryqueryC24E448D"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/memory/query/POST/Resource"
+   }
+  },
+  "CommunityOSApiconnect8A05BB9B": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "CommunityOSApi69010782",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "connect",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connect/Resource"
+   }
+  },
+  "CommunityOSApiconnectOPTIONS9CC95351": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApiconnect8A05BB9B"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connect/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiconnectrecommendationsDADD17B5": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApiconnect8A05BB9B"
+    },
+    "PathPart": "recommendations",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connect/recommendations/Resource"
+   }
+  },
+  "CommunityOSApiconnectrecommendationsOPTIONSD1BB0A30": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApiconnectrecommendationsDADD17B5"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connect/recommendations/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiconnectrecommendationsPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTconnectrecommendations3E49971A": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConnectHandler2FFD52D8",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/POST/connect/recommendations"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connect/recommendations/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..connect.recommendations"
+   }
+  },
+  "CommunityOSApiconnectrecommendationsPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTconnectrecommendations37ECF4A0": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConnectHandler2FFD52D8",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/POST/connect/recommendations"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connect/recommendations/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..connect.recommendations"
+   }
+  },
+  "CommunityOSApiconnectrecommendationsPOST5886F548": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ConnectHandler2FFD52D8",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApiconnectrecommendationsDADD17B5"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connect/recommendations/POST/Resource"
+   }
+  },
+  "CommunityOSApiconnections78CC037F": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "CommunityOSApi69010782",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "connections",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connections/Resource"
+   }
+  },
+  "CommunityOSApiconnectionsOPTIONSEBB6F554": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApiconnections78CC037F"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connections/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiconnectionsPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTconnections40EEF363": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConnectHandler2FFD52D8",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/POST/connections"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connections/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..connections"
+   }
+  },
+  "CommunityOSApiconnectionsPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTconnectionsA6A7A893": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConnectHandler2FFD52D8",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/POST/connections"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connections/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..connections"
+   }
+  },
+  "CommunityOSApiconnectionsPOST8538ACF4": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ConnectHandler2FFD52D8",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApiconnections78CC037F"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connections/POST/Resource"
+   }
+  },
+  "CommunityOSApiconnectionsGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETconnectionsE7D55563": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConnectHandler2FFD52D8",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/GET/connections"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connections/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..connections"
+   }
+  },
+  "CommunityOSApiconnectionsGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETconnections39C1B25E": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConnectHandler2FFD52D8",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/GET/connections"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connections/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..connections"
+   }
+  },
+  "CommunityOSApiconnectionsGETF53F84BB": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ConnectHandler2FFD52D8",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApiconnections78CC037F"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connections/GET/Resource"
+   }
+  },
+  "CommunityOSApiconnectionsconnectionId57AFEB58": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApiconnections78CC037F"
+    },
+    "PathPart": "{connectionId}",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connections/{connectionId}/Resource"
+   }
+  },
+  "CommunityOSApiconnectionsconnectionIdOPTIONSA564C379": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApiconnectionsconnectionId57AFEB58"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connections/{connectionId}/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiconnectionsconnectionIdPUTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPUTconnectionsconnectionIdAEBFF20F": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConnectHandler2FFD52D8",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/PUT/connections/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connections/{connectionId}/PUT/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..connections.{connectionId}"
+   }
+  },
+  "CommunityOSApiconnectionsconnectionIdPUTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPUTconnectionsconnectionId719BE651": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConnectHandler2FFD52D8",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/PUT/connections/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connections/{connectionId}/PUT/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..connections.{connectionId}"
+   }
+  },
+  "CommunityOSApiconnectionsconnectionIdPUT1FB16891": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "PUT",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ConnectHandler2FFD52D8",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApiconnectionsconnectionId57AFEB58"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/connections/{connectionId}/PUT/Resource"
+   }
+  },
+  "CommunityOSApipros3DBE8B35": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "CommunityOSApi69010782",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "pros",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/Resource"
+   }
+  },
+  "CommunityOSApiprosOPTIONSEE479C7B": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApipros3DBE8B35"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiprosmemberId78E8B8B0": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApipros3DBE8B35"
+    },
+    "PathPart": "{memberId}",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/Resource"
+   }
+  },
+  "CommunityOSApiprosmemberIdOPTIONS9A668AB4": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApiprosmemberId78E8B8B0"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiprosmemberIdPUTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPUTprosmemberIdF8980F24": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthProfileHandlerB0575ABD",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/PUT/pros/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/PUT/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..pros.{memberId}"
+   }
+  },
+  "CommunityOSApiprosmemberIdPUTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPUTprosmemberIdF09454A7": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "AuthProfileHandlerB0575ABD",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/PUT/pros/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/PUT/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..pros.{memberId}"
+   }
+  },
+  "CommunityOSApiprosmemberIdPUT0D0E5B52": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "PUT",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "AuthProfileHandlerB0575ABD",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApiprosmemberId78E8B8B0"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/PUT/Resource"
+   }
+  },
+  "CommunityOSApiprosmemberIdrequests13763F3E": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApiprosmemberId78E8B8B0"
+    },
+    "PathPart": "requests",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/requests/Resource"
+   }
+  },
+  "CommunityOSApiprosmemberIdrequestsOPTIONS1C53CCA8": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApiprosmemberIdrequests13763F3E"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/requests/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiprosmemberIdrequestsGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETprosmemberIdrequestsA16821A6": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConnectHandler2FFD52D8",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/GET/pros/*/requests"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/requests/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..pros.{memberId}.requests"
+   }
+  },
+  "CommunityOSApiprosmemberIdrequestsGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETprosmemberIdrequests35B50CFC": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConnectHandler2FFD52D8",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/GET/pros/*/requests"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/requests/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..pros.{memberId}.requests"
+   }
+  },
+  "CommunityOSApiprosmemberIdrequestsGET8A6E9A39": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ConnectHandler2FFD52D8",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApiprosmemberIdrequests13763F3E"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/{memberId}/requests/GET/Resource"
+   }
+  },
+  "CommunityOSApiprosrequestsB15819F2": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApipros3DBE8B35"
+    },
+    "PathPart": "requests",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/requests/Resource"
+   }
+  },
+  "CommunityOSApiprosrequestsOPTIONSC76C80B0": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApiprosrequestsB15819F2"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/requests/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiprosrequestsrequestIdB097909E": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApiprosrequestsB15819F2"
+    },
+    "PathPart": "{requestId}",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/requests/{requestId}/Resource"
+   }
+  },
+  "CommunityOSApiprosrequestsrequestIdOPTIONS36FCE0D6": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApiprosrequestsrequestIdB097909E"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/requests/{requestId}/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiprosrequestsrequestIdPUTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPUTprosrequestsrequestId2F2FEC91": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConnectHandler2FFD52D8",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/PUT/pros/requests/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/requests/{requestId}/PUT/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..pros.requests.{requestId}"
+   }
+  },
+  "CommunityOSApiprosrequestsrequestIdPUTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPUTprosrequestsrequestId39FD05E9": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "ConnectHandler2FFD52D8",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/PUT/pros/requests/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/requests/{requestId}/PUT/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.PUT..pros.requests.{requestId}"
+   }
+  },
+  "CommunityOSApiprosrequestsrequestIdPUT4839EFE9": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "PUT",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "ConnectHandler2FFD52D8",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApiprosrequestsrequestIdB097909E"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/pros/requests/{requestId}/PUT/Resource"
+   }
+  },
+  "CommunityOSApiradar6BF952E1": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "CommunityOSApi69010782",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "radar",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/Resource"
+   }
+  },
+  "CommunityOSApiradarOPTIONS798D78F2": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApiradar6BF952E1"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiradarGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETradarA85F8A05": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "RadarHandler0014FACE",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/GET/radar"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar"
+   }
+  },
+  "CommunityOSApiradarGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETradarD9C51715": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "RadarHandler0014FACE",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/GET/radar"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar"
+   }
+  },
+  "CommunityOSApiradarGET1DDCC600": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "RadarHandler0014FACE",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApiradar6BF952E1"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/GET/Resource"
+   }
+  },
+  "CommunityOSApiradargapsCDE015FF": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApiradar6BF952E1"
+    },
+    "PathPart": "gaps",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/Resource"
+   }
+  },
+  "CommunityOSApiradargapsOPTIONSA8576609": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApiradargapsCDE015FF"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiradargapsGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETradargapsD2F1EC05": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "RadarHandler0014FACE",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/GET/radar/gaps"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.gaps"
+   }
+  },
+  "CommunityOSApiradargapsGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETradargaps7C642DC0": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "RadarHandler0014FACE",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/GET/radar/gaps"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.gaps"
+   }
+  },
+  "CommunityOSApiradargapsGET49EE851A": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "RadarHandler0014FACE",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApiradargapsCDE015FF"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/GET/Resource"
+   }
+  },
+  "CommunityOSApiradargapsgapId0179E5D5": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApiradargapsCDE015FF"
+    },
+    "PathPart": "{gapId}",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/Resource"
+   }
+  },
+  "CommunityOSApiradargapsgapIdOPTIONS31408869": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApiradargapsgapId0179E5D5"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiradargapsgapIdGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETradargapsgapIdB1948BAB": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "RadarHandler0014FACE",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/GET/radar/gaps/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.gaps.{gapId}"
+   }
+  },
+  "CommunityOSApiradargapsgapIdGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETradargapsgapId5069945E": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "RadarHandler0014FACE",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/GET/radar/gaps/*"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.gaps.{gapId}"
+   }
+  },
+  "CommunityOSApiradargapsgapIdGET18C73834": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "RadarHandler0014FACE",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApiradargapsgapId0179E5D5"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/GET/Resource"
+   }
+  },
+  "CommunityOSApiradargapsgapIdactions629E67E6": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApiradargapsgapId0179E5D5"
+    },
+    "PathPart": "actions",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/actions/Resource"
+   }
+  },
+  "CommunityOSApiradargapsgapIdactionsOPTIONS1BA80487": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApiradargapsgapIdactions629E67E6"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/actions/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiradargapsgapIdactionsPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTradargapsgapIdactionsA4810E43": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "RadarHandler0014FACE",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/POST/radar/gaps/*/actions"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/actions/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..radar.gaps.{gapId}.actions"
+   }
+  },
+  "CommunityOSApiradargapsgapIdactionsPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTradargapsgapIdactionsFF4883D3": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "RadarHandler0014FACE",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/POST/radar/gaps/*/actions"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/actions/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..radar.gaps.{gapId}.actions"
+   }
+  },
+  "CommunityOSApiradargapsgapIdactionsPOST09A75B0A": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "RadarHandler0014FACE",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApiradargapsgapIdactions629E67E6"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/gaps/{gapId}/actions/POST/Resource"
+   }
+  },
+  "CommunityOSApiradartopics66B50186": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApiradar6BF952E1"
+    },
+    "PathPart": "topics",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/topics/Resource"
+   }
+  },
+  "CommunityOSApiradartopicsOPTIONS4DDDA56C": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApiradartopics66B50186"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/topics/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiradartopicsGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETradartopicsB89DE50B": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "RadarHandler0014FACE",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/GET/radar/topics"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/topics/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.topics"
+   }
+  },
+  "CommunityOSApiradartopicsGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETradartopicsA7020740": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "RadarHandler0014FACE",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/GET/radar/topics"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/topics/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.topics"
+   }
+  },
+  "CommunityOSApiradartopicsGETCE516CEB": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "RadarHandler0014FACE",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApiradartopics66B50186"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/topics/GET/Resource"
+   }
+  },
+  "CommunityOSApiradarevents3A4D67F5": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApiradar6BF952E1"
+    },
+    "PathPart": "events",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/events/Resource"
+   }
+  },
+  "CommunityOSApiradareventsOPTIONS456ED1D5": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApiradarevents3A4D67F5"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/events/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApiradareventsGETApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCGETradarevents52CB4A25": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "RadarHandler0014FACE",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/GET/radar/events"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/events/GET/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.events"
+   }
+  },
+  "CommunityOSApiradareventsGETApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCGETradarevents7E27DD1A": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "RadarHandler0014FACE",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/GET/radar/events"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/events/GET/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.GET..radar.events"
+   }
+  },
+  "CommunityOSApiradareventsGET1ED32474": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "GET",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "RadarHandler0014FACE",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApiradarevents3A4D67F5"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/radar/events/GET/Resource"
+   }
+  },
+  "CommunityOSApieventsEF2DAE1D": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "CommunityOSApi69010782",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "events",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/Resource"
+   }
+  },
+  "CommunityOSApieventsOPTIONS04E55F18": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApieventsEF2DAE1D"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApieventsPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTeventsA72BD087": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "EventHandler0ACBF035",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/POST/events"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..events"
+   }
+  },
+  "CommunityOSApieventsPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTevents422413AF": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "EventHandler0ACBF035",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/POST/events"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..events"
+   }
+  },
+  "CommunityOSApieventsPOSTCA7F518E": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "EventHandler0ACBF035",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApieventsEF2DAE1D"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/POST/Resource"
+   }
+  },
+  "CommunityOSApieventseventId42634530": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApieventsEF2DAE1D"
+    },
+    "PathPart": "{eventId}",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/Resource"
+   }
+  },
+  "CommunityOSApieventseventIdOPTIONSF234455E": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApieventseventId42634530"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApieventseventIdphotosCC135FF2": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApieventseventId42634530"
+    },
+    "PathPart": "photos",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/photos/Resource"
+   }
+  },
+  "CommunityOSApieventseventIdphotosOPTIONS2956410B": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApieventseventIdphotosCC135FF2"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/photos/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApieventseventIdphotosPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTeventseventIdphotos9A8620AF": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "EventHandler0ACBF035",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/POST/events/*/photos"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/photos/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..events.{eventId}.photos"
+   }
+  },
+  "CommunityOSApieventseventIdphotosPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTeventseventIdphotosBC94B4C4": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "EventHandler0ACBF035",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/POST/events/*/photos"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/photos/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..events.{eventId}.photos"
+   }
+  },
+  "CommunityOSApieventseventIdphotosPOST9AA51C2B": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "EventHandler0ACBF035",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApieventseventIdphotosCC135FF2"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/photos/POST/Resource"
+   }
+  },
+  "CommunityOSApinotificationsB4F50B84": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Fn::GetAtt": [
+      "CommunityOSApi69010782",
+      "RootResourceId"
+     ]
+    },
+    "PathPart": "notifications",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/notifications/Resource"
+   }
+  },
+  "CommunityOSApinotificationsOPTIONSCE74FD72": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApinotificationsB4F50B84"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/notifications/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApinotificationstestB2DCEE58": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApinotificationsB4F50B84"
+    },
+    "PathPart": "test",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/notifications/test/Resource"
+   }
+  },
+  "CommunityOSApinotificationstestOPTIONS3DFE31A3": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApinotificationstestB2DCEE58"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/notifications/test/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApinotificationstestPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTnotificationstest32AD1CEF": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "EventHandler0ACBF035",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/POST/notifications/test"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/notifications/test/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..notifications.test"
+   }
+  },
+  "CommunityOSApinotificationstestPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTnotificationstest1BA43F66": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "EventHandler0ACBF035",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:us-east-1:110836100897:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/POST/notifications/test"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/notifications/test/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..notifications.test"
+   }
+  },
+  "CommunityOSApinotificationstestPOST5ED2DD49": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "EventHandler0ACBF035",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApinotificationstestB2DCEE58"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/notifications/test/POST/Resource"
+   }
+  },
+  "CDKMetadata": {
+   "Type": "AWS::CDK::Metadata",
+   "Properties": {
+    "Analytics": "v2:deflate64:H4sIAAAAAAAA/5VQTU/DMAz9Les5CzA0hLjtQ3BCm8Y4ITRlqSnemrhqko2p6n8nHx1UwIWTn/3sZ/uN+OhmzC8H4miGMt8PS9zy5skKuWe+tGnykxaKcl9ci20JbPamI2iZuebN1Mk92FBM6KXJFH6gzu6yvmBQ8u2RMjy1TpylOZRgYbHdgbQma19ZopZUojx9q6b8H9ppwH9hQYHuS0+F8adLKjRa4s2zgXpJVIZdX/gMZiX64T71u/JQk6u8F351s6YKZTQogJaVQm1zwZt7p6VF0oHq4yXUCo3xWctQKN6sKBkc47cJCQXDN8IYsIZPQmCiwsJ/eBQnPwrGTiqM0x2cQ1XSSXUH9zLvSxH3JOD7ydUSgjXsEew75YHs0JntlCNu217ZGUvqr64f1LKmA+ZQxzXxgbAedRFmFs5WzrZMUw58Zy4OozG/5VeDnUEc1k5bVMBXKX4CgQU+Y7ICAAA="
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CDKMetadata/Default"
+   }
+  }
+ },
+ "Outputs": {
+  "CommunityOSApiEndpoint0E3188EE": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "CommunityOSApi69010782"
+      },
+      ".execute-api.us-east-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+      },
+      "/"
+     ]
+    ]
+   }
+  },
+  "UserPoolId": {
+   "Value": {
+    "Ref": "CommunityOSUserPool3FC34955"
+   }
+  },
+  "UserPoolClientId": {
+   "Value": {
+    "Ref": "CommunityOSUserPoolClient090FFAF3"
+   }
+  },
+  "ApiUrl": {
+   "Value": {
+    "Fn::Join": [
+     "",
+     [
+      "https://",
+      {
+       "Ref": "CommunityOSApi69010782"
+      },
+      ".execute-api.us-east-1.",
+      {
+       "Ref": "AWS::URLSuffix"
+      },
+      "/",
+      {
+       "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+      },
+      "/"
+     ]
+    ]
+   }
+  },
+  "BucketName": {
+   "Value": {
+    "Ref": "CommunityOSKnowledgeBucket5F48D63B"
+   }
+  }
+ },
+ "Parameters": {
+  "BootstrapVersion": {
+   "Type": "AWS::SSM::Parameter::Value<String>",
+   "Default": "/cdk-bootstrap/hnb659fds/version",
+   "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+  }
+ },
+ "Rules": {
+  "CheckBootstrapVersion": {
+   "Assertions": [
+    {
+     "Assert": {
+      "Fn::Not": [
+       {
+        "Fn::Contains": [
+         [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+         ],
+         {
+          "Ref": "BootstrapVersion"
+         }
+        ]
+       }
+      ]
+     },
+     "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+    }
+   ]
+  }
+ }
+}
