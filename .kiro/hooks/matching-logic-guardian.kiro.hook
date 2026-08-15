@@ -1,0 +1,13 @@
+{
+  "enabled": true,
+  "name": "Matching Logic Guardian",
+  "description": "After a Spec task modifies Pro profiles, Learner recommendations, Organizer suggestions, skills, help history, matching, consent, or community gaps, review the implementation against CommunityOS matching rules to ensure the openToMatch consent gate is respected and matching logic is deterministic and evidence-based.",
+  "version": "1",
+  "when": {
+    "type": "postTaskExecution"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A Spec task just completed. If the task modified Pro profiles, Learner recommendations, Organizer suggestions, skills, help history, matching logic, consent toggles, or community gaps, review the implementation against these matching rules:\n\nCRITICAL CONSENT RULE:\nA Pro can ONLY appear in:\n1. Learner's \"People who can help\"\n2. Organizer's suggested people\nIF AND ONLY IF: openToMatch === true (the \"Open to being matched with learners\" toggle)\n\nThis rule must NEVER be bypassed.\n\nDATA INTEGRITY RULES:\n- \"Things I've helped with before\" is real application data, NOT decorative text\n- It drives the experienceLine shown in matching results\n- Organizer suggestions MUST be derived from the same Pro seed/profile data used by the Pro dashboard\n- Never invent expertise or previous help that doesn't exist in the data\n\nORGANIZER GAP SUGGESTIONS LOGIC:\n1. Find the detected gap topic\n2. Compare with Pro skills[] and \"Things I've helped with before\" (pastHelp[])\n3. Prefer Pros whose previous help/topic is relevant to the gap\n4. EXCLUDE Pros where openToMatch !== true\n5. Display evidence line based on actual help history\n\nLEARNER RECOMMENDATION LOGIC:\n1. Use the learner's submitted question text\n2. Find relevant resources/sessions by tag/keyword matching\n3. Find relevant Pros by skills[] and help history matching\n4. ONLY show Pros where openToMatch === true\n5. Generate evidence line from actual Pro history/skills\n6. Never invent expertise or fabricate help history\n\nPROHIBITED:\n- Do NOT display match percentages in the UI\n- Do NOT create a fake matching system that randomly selects people\n- Do NOT bypass the openToMatch consent gate for any reason\n- Do NOT create matching logic that is non-deterministic or unexplainable\n\nMATCHING MUST BE:\n- Deterministic (same input → same output)\n- Explainable (every suggestion traceable to skills/history data)\n- Consent-gated (openToMatch must be checked)\n- Evidence-based (experienceLine derived from real pastHelp or skills)\n\nIf a change violates these rules:\n- Flag the specific violation\n- Recommend the smallest correction\n- Do NOT perform unrelated refactoring\n- Do NOT consider the task complete until the violation is resolved"
+  }
+}
