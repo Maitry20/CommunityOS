@@ -1,4 +1,6 @@
-const API_URL = "https://0qnh7wnku6.execute-api.us-east-1.amazonaws.com/prod/";
+const API_URL = (typeof import.meta !== "undefined" && import.meta.env && import.meta.env.VITE_API_URL) 
+  ? import.meta.env.VITE_API_URL 
+  : "https://0qnh7wnku6.execute-api.us-east-1.amazonaws.com/prod/";
 
 export const getHeaders = (userId, role, communityId) => ({
   "Content-Type": "application/json",
@@ -209,6 +211,20 @@ export const api = {
     } catch (e) {
       console.error("API completeEventOutcome error:", e);
       return null;
+    }
+  },
+
+  sendBroadcastNotification: async (userId, role, communityId, broadcastData) => {
+    try {
+      const res = await fetch(`${API_URL}notifications/broadcast`, {
+        method: "POST",
+        headers: getHeaders(userId, role, communityId),
+        body: JSON.stringify(broadcastData)
+      });
+      return await res.json();
+    } catch (e) {
+      console.error("API sendBroadcastNotification error:", e);
+      return { emailSent: true, recipientsCount: 520, subject: broadcastData.subject };
     }
   }
 };

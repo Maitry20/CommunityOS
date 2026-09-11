@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ParallaxCard from '../components/ParallaxCard';
+import HeroTitleSection from '../components/HeroTitleSection';
 
 export default function LoginPage({ 
   users, 
@@ -15,6 +17,11 @@ export default function LoginPage({
   const [signInEmail, setSignInEmail] = useState('');
   const [signInPassword, setSignInPassword] = useState('');
   const [signInError, setSignInError] = useState('');
+
+  // Scroll smoothly to top when switching between register and signin
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [loginMode]);
 
   const handleRoleSelect = (role) => {
     setSelectedRole(role);
@@ -70,48 +77,52 @@ export default function LoginPage({
   };
 
   return (
-    <div className="text-center py-12 max-w-3xl mx-auto">
+    <div className="text-center w-full max-w-4xl mx-auto my-auto py-2">
+      {/* Redesigned Floating Hero Title & Tagline Section */}
+      <HeroTitleSection compact={loginMode === 'signin'} />
+
       {loginMode === 'register' ? (
         <div className="animate-fade-in">
-          <h1 className="text-2xl font-normal text-white mb-2">Which are you here as?</h1>
-          <p className="text-sm text-neutral-400 mb-10">Select your workspace role to create a profile.</p>
+          <p className="text-xs font-mono uppercase tracking-wider text-neutral-400 mb-6">
+            Select your workspace role to create a profile
+          </p>
           
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="grid md:grid-cols-3 gap-3.5 mb-6 max-w-3xl mx-auto">
             {/* Learner Card */}
-            <button 
+            <ParallaxCard 
               onClick={() => handleRoleSelect('learner')}
-              className="bg-[#161b24] border border-[#353f4d] hover:border-[#ff9900] p-8 text-left transition-all group flex flex-col justify-between h-48 focus:outline-none cursor-pointer"
+              className="bg-[#161b24] border border-[#353f4d] hover:border-[#ff9900] p-3.5 text-left transition-all group flex flex-col justify-between min-h-[120px] focus:outline-none cursor-pointer rounded-sm shadow-md"
             >
               <div>
-                <span className="font-mono text-xs tracking-wider text-[#0972d3] block mb-3 uppercase font-bold">Role 01</span>
-                <h3 className="text-lg font-medium text-white mb-2 group-hover:text-[#ff9900] transition-colors">Learner</h3>
-                <p className="text-sm text-neutral-400 font-normal leading-relaxed">Learn new topics and ask questions directly to the community experts.</p>
+                <span className="font-mono text-[10px] tracking-wider text-[#0972d3] block mb-1 uppercase font-bold">Role 01</span>
+                <h3 className="text-sm font-medium text-white mb-1 group-hover:text-[#ff9900] transition-colors">Learner</h3>
+                <p className="text-xs text-neutral-400 font-normal leading-relaxed">Learn new topics and ask questions directly to the community experts.</p>
               </div>
-            </button>
+            </ParallaxCard>
 
             {/* Pro Card */}
-            <button 
+            <ParallaxCard 
               onClick={() => handleRoleSelect('pro')}
-              className="bg-[#161b24] border border-[#353f4d] hover:border-[#ff9900] p-8 text-left transition-all group flex flex-col justify-between h-48 focus:outline-none cursor-pointer"
+              className="bg-[#161b24] border border-[#353f4d] hover:border-[#ff9900] p-3.5 text-left transition-all group flex flex-col justify-between min-h-[120px] focus:outline-none cursor-pointer rounded-sm shadow-md"
             >
               <div>
-                <span className="font-mono text-xs tracking-wider text-[#0972d3] block mb-3 uppercase font-bold">Role 02</span>
-                <h3 className="text-lg font-medium text-white mb-2 group-hover:text-[#ff9900] transition-colors">Pro</h3>
-                <p className="text-sm text-neutral-400 font-normal leading-relaxed">Offer your expertise and guide members matching your skillset.</p>
+                <span className="font-mono text-[10px] tracking-wider text-[#0972d3] block mb-1 uppercase font-bold">Role 02</span>
+                <h3 className="text-sm font-medium text-white mb-1 group-hover:text-[#ff9900] transition-colors">Pro</h3>
+                <p className="text-xs text-neutral-400 font-normal leading-relaxed">Offer your expertise and guide members matching your skillset.</p>
               </div>
-            </button>
+            </ParallaxCard>
 
             {/* Organizer Card */}
-            <button 
+            <ParallaxCard 
               onClick={() => handleRoleSelect('organizer')}
-              className="bg-[#161b24] border border-[#353f4d] hover:border-[#ff9900] p-8 text-left transition-all group flex flex-col justify-between h-48 focus:outline-none cursor-pointer"
+              className="bg-[#161b24] border border-[#353f4d] hover:border-[#ff9900] p-3.5 text-left transition-all group flex flex-col justify-between min-h-[120px] focus:outline-none cursor-pointer rounded-sm shadow-md"
             >
               <div>
-                <span className="font-mono text-xs tracking-wider text-[#0972d3] block mb-3 uppercase font-bold">Role 03</span>
-                <h3 className="text-lg font-medium text-white mb-2 group-hover:text-[#ff9900] transition-colors">Organizer</h3>
-                <p className="text-sm text-neutral-400 font-normal leading-relaxed">Analyze capability gaps, track event engagement, and run operations.</p>
+                <span className="font-mono text-[10px] tracking-wider text-[#0972d3] block mb-1 uppercase font-bold">Role 03</span>
+                <h3 className="text-sm font-medium text-white mb-1 group-hover:text-[#ff9900] transition-colors">Organizer</h3>
+                <p className="text-xs text-neutral-400 font-normal leading-relaxed">Analyze capability gaps, track event engagement, and run operations.</p>
               </div>
-            </button>
+            </ParallaxCard>
           </div>
 
           <button
@@ -122,11 +133,11 @@ export default function LoginPage({
           </button>
         </div>
       ) : (
-        <div className="max-w-md mx-auto bg-[#161b24] border border-[#353f4d] p-8 text-left animate-fade-in">
-          <h2 className="text-lg font-normal text-white mb-6 border-b border-[#353f4d] pb-4">
+        <div className="max-w-sm mx-auto bg-[#161b24] border border-[#353f4d] p-4 text-left animate-fade-in rounded-sm">
+          <h2 className="text-sm font-normal text-white mb-4 border-b border-[#353f4d] pb-2.5">
             Sign In to CommunityOS Console
           </h2>
-          <form onSubmit={handleSignInSubmit} className="space-y-5">
+          <form onSubmit={handleSignInSubmit} className="space-y-4">
             {signInError && (
               <div className="bg-[#ec7211]/10 border border-[#ec7211]/30 text-[#ec7211] text-xs px-3 py-2 font-mono">
                 {signInError}
@@ -163,7 +174,37 @@ export default function LoginPage({
             </button>
           </form>
 
-          <div className="mt-6 text-center border-t border-[#353f4d] pt-4">
+          {/* Quick Demo Login helper buttons */}
+          <div className="mt-4 pt-3 border-t border-[#353f4d]/80 text-center">
+            <span className="block text-[10px] font-mono text-neutral-400 uppercase tracking-wider mb-2">
+              ⚡ Quick Demo Auto-Fill:
+            </span>
+            <div className="flex gap-2 justify-center">
+              <button
+                type="button"
+                onClick={() => { setSignInEmail('learner@example.com'); setSignInPassword('password'); setSignInError(''); }}
+                className="text-[11px] font-mono bg-[#0f141c] hover:bg-[#2b3947] text-[#0972d3] border border-[#0972d3]/40 hover:border-[#0972d3] px-2.5 py-1 rounded-sm cursor-pointer font-semibold transition-colors"
+              >
+                Learner
+              </button>
+              <button
+                type="button"
+                onClick={() => { setSignInEmail('pro@example.com'); setSignInPassword('password'); setSignInError(''); }}
+                className="text-[11px] font-mono bg-[#0f141c] hover:bg-[#2b3947] text-[#ff9900] border border-[#ff9900]/40 hover:border-[#ff9900] px-2.5 py-1 rounded-sm cursor-pointer font-semibold transition-colors"
+              >
+                Pro
+              </button>
+              <button
+                type="button"
+                onClick={() => { setSignInEmail('organizer@example.com'); setSignInPassword('password'); setSignInError(''); }}
+                className="text-[11px] font-mono bg-[#0f141c] hover:bg-[#2b3947] text-[#ec7211] border border-[#ec7211]/40 hover:border-[#ec7211] px-2.5 py-1 rounded-sm cursor-pointer font-semibold transition-colors"
+              >
+                Organizer
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-4 text-center border-t border-[#353f4d] pt-3">
             <button
               onClick={() => setLoginMode('register')}
               className="text-xs font-mono text-[#ff9900] hover:text-[#ec7211] hover:underline focus:outline-none uppercase tracking-wider bg-transparent border-0 cursor-pointer"

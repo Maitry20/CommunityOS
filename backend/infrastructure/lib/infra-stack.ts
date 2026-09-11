@@ -233,9 +233,12 @@ export class CommunityOsInfraStack extends cdk.Stack {
     
     const singleEventResource = eventsResource.addResource('{eventId}');
     singleEventResource.addResource('photos').addMethod('POST', new apigateway.LambdaIntegration(eventLambda), authOptions);
+    singleEventResource.addResource('outcome').addMethod('POST', new apigateway.LambdaIntegration(eventLambda), authOptions);
 
-    // /notifications/test
-    api.root.addResource('notifications').addResource('test').addMethod('POST', new apigateway.LambdaIntegration(eventLambda), authOptions);
+    // /notifications
+    const notificationsResource = api.root.addResource('notifications');
+    notificationsResource.addResource('test').addMethod('POST', new apigateway.LambdaIntegration(eventLambda), authOptions);
+    notificationsResource.addResource('broadcast').addMethod('POST', new apigateway.LambdaIntegration(eventLambda), authOptions);
 
     // Outputs
     new cdk.CfnOutput(this, 'UserPoolId', { value: userPool.userPoolId });

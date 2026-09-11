@@ -195,7 +195,7 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
-     "S3Bucket": "cdk-hnb659fds-assets-110836100897-us-east-1",
+     "S3Bucket": "cdk-hnb659fds-assets-631259293474-eu-west-2",
      "S3Key": "faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6.zip"
     },
     "Timeout": 900,
@@ -460,8 +460,8 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
-     "S3Bucket": "cdk-hnb659fds-assets-110836100897-us-east-1",
-     "S3Key": "261c2e2aafee35fb26161b76ac234bc9fe549ad5277112603436626bcdd5699d.zip"
+     "S3Bucket": "cdk-hnb659fds-assets-631259293474-eu-west-2",
+     "S3Key": "2bc1571eff203a54b6cc6723cd475b3736ff2fddcaf728b80c9e6f9a454f97a6.zip"
     },
     "Environment": {
      "Variables": {
@@ -496,7 +496,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "CommunityOsInfraStack/AuthProfileHandler/Resource",
-    "aws:asset:path": "asset.261c2e2aafee35fb26161b76ac234bc9fe549ad5277112603436626bcdd5699d",
+    "aws:asset:path": "asset.2bc1571eff203a54b6cc6723cd475b3736ff2fddcaf728b80c9e6f9a454f97a6",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }
@@ -636,8 +636,8 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
-     "S3Bucket": "cdk-hnb659fds-assets-110836100897-us-east-1",
-     "S3Key": "261c2e2aafee35fb26161b76ac234bc9fe549ad5277112603436626bcdd5699d.zip"
+     "S3Bucket": "cdk-hnb659fds-assets-631259293474-eu-west-2",
+     "S3Key": "2bc1571eff203a54b6cc6723cd475b3736ff2fddcaf728b80c9e6f9a454f97a6.zip"
     },
     "Environment": {
      "Variables": {
@@ -672,7 +672,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "CommunityOsInfraStack/MemoryHandler/Resource",
-    "aws:asset:path": "asset.261c2e2aafee35fb26161b76ac234bc9fe549ad5277112603436626bcdd5699d",
+    "aws:asset:path": "asset.2bc1571eff203a54b6cc6723cd475b3736ff2fddcaf728b80c9e6f9a454f97a6",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }
@@ -789,8 +789,8 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
-     "S3Bucket": "cdk-hnb659fds-assets-110836100897-us-east-1",
-     "S3Key": "261c2e2aafee35fb26161b76ac234bc9fe549ad5277112603436626bcdd5699d.zip"
+     "S3Bucket": "cdk-hnb659fds-assets-631259293474-eu-west-2",
+     "S3Key": "2bc1571eff203a54b6cc6723cd475b3736ff2fddcaf728b80c9e6f9a454f97a6.zip"
     },
     "Environment": {
      "Variables": {
@@ -825,7 +825,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "CommunityOsInfraStack/ConnectHandler/Resource",
-    "aws:asset:path": "asset.261c2e2aafee35fb26161b76ac234bc9fe549ad5277112603436626bcdd5699d",
+    "aws:asset:path": "asset.2bc1571eff203a54b6cc6723cd475b3736ff2fddcaf728b80c9e6f9a454f97a6",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }
@@ -942,8 +942,8 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
-     "S3Bucket": "cdk-hnb659fds-assets-110836100897-us-east-1",
-     "S3Key": "261c2e2aafee35fb26161b76ac234bc9fe549ad5277112603436626bcdd5699d.zip"
+     "S3Bucket": "cdk-hnb659fds-assets-631259293474-eu-west-2",
+     "S3Key": "2bc1571eff203a54b6cc6723cd475b3736ff2fddcaf728b80c9e6f9a454f97a6.zip"
     },
     "Environment": {
      "Variables": {
@@ -978,7 +978,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "CommunityOsInfraStack/RadarHandler/Resource",
-    "aws:asset:path": "asset.261c2e2aafee35fb26161b76ac234bc9fe549ad5277112603436626bcdd5699d",
+    "aws:asset:path": "asset.2bc1571eff203a54b6cc6723cd475b3736ff2fddcaf728b80c9e6f9a454f97a6",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }
@@ -1123,8 +1123,8 @@
    "Type": "AWS::Lambda::Function",
    "Properties": {
     "Code": {
-     "S3Bucket": "cdk-hnb659fds-assets-110836100897-us-east-1",
-     "S3Key": "261c2e2aafee35fb26161b76ac234bc9fe549ad5277112603436626bcdd5699d.zip"
+     "S3Bucket": "cdk-hnb659fds-assets-631259293474-eu-west-2",
+     "S3Key": "2bc1571eff203a54b6cc6723cd475b3736ff2fddcaf728b80c9e6f9a454f97a6.zip"
     },
     "Environment": {
      "Variables": {
@@ -1159,7 +1159,7 @@
    ],
    "Metadata": {
     "aws:cdk:path": "CommunityOsInfraStack/EventHandler/Resource",
-    "aws:asset:path": "asset.261c2e2aafee35fb26161b76ac234bc9fe549ad5277112603436626bcdd5699d",
+    "aws:asset:path": "asset.2bc1571eff203a54b6cc6723cd475b3736ff2fddcaf728b80c9e6f9a454f97a6",
     "aws:asset:is-bundled": false,
     "aws:asset:property": "Code"
    }
@@ -1173,7 +1173,7 @@
     "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Resource"
    }
   },
-  "CommunityOSApiDeployment619330CFea8128feaad7d6786b89bb63352e952e": {
+  "CommunityOSApiDeployment619330CF985fb1d88d3fd9974a0df78f6b817afb": {
    "Type": "AWS::ApiGateway::Deployment",
    "Properties": {
     "Description": "Automatically created by the RestApi construct",
@@ -1195,6 +1195,9 @@
     "CommunityOSApiconnectionsPOST8538ACF4",
     "CommunityOSApiconnections78CC037F",
     "CommunityOSApieventseventIdOPTIONSF234455E",
+    "CommunityOSApieventseventIdoutcomeOPTIONS4E8016E1",
+    "CommunityOSApieventseventIdoutcomePOSTB7B3834D",
+    "CommunityOSApieventseventIdoutcomeD90DD707",
     "CommunityOSApieventseventIdphotosOPTIONS2956410B",
     "CommunityOSApieventseventIdphotosPOST9AA51C2B",
     "CommunityOSApieventseventIdphotosCC135FF2",
@@ -1216,6 +1219,9 @@
     "CommunityOSApimemoryqueryPOST0EB351ED",
     "CommunityOSApimemoryqueryC24E448D",
     "CommunityOSApimemory844BC22E",
+    "CommunityOSApinotificationsbroadcastOPTIONS1AA88976",
+    "CommunityOSApinotificationsbroadcastPOST076336D5",
+    "CommunityOSApinotificationsbroadcastB69A0F30",
     "CommunityOSApinotificationsOPTIONSCE74FD72",
     "CommunityOSApinotificationsB4F50B84",
     "CommunityOSApinotificationstestOPTIONS3DFE31A3",
@@ -1263,7 +1269,7 @@
    "Type": "AWS::ApiGateway::Stage",
    "Properties": {
     "DeploymentId": {
-     "Ref": "CommunityOSApiDeployment619330CFea8128feaad7d6786b89bb63352e952e"
+     "Ref": "CommunityOSApiDeployment619330CF985fb1d88d3fd9974a0df78f6b817afb"
     },
     "RestApiId": {
      "Ref": "CommunityOSApi69010782"
@@ -1396,7 +1402,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -1428,7 +1434,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -1453,7 +1459,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "AuthProfileHandlerB0575ABD",
@@ -1610,7 +1616,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -1642,7 +1648,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -1667,7 +1673,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "AuthProfileHandlerB0575ABD",
@@ -1705,7 +1711,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -1737,7 +1743,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -1762,7 +1768,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "AuthProfileHandlerB0575ABD",
@@ -1919,7 +1925,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -1951,7 +1957,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -1976,7 +1982,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "MemoryHandler88AB4C1A",
@@ -2133,7 +2139,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -2165,7 +2171,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -2190,7 +2196,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "ConnectHandler2FFD52D8",
@@ -2289,7 +2295,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -2321,7 +2327,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -2346,7 +2352,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "ConnectHandler2FFD52D8",
@@ -2384,7 +2390,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -2416,7 +2422,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -2441,7 +2447,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "ConnectHandler2FFD52D8",
@@ -2537,7 +2543,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -2569,7 +2575,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -2594,7 +2600,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "ConnectHandler2FFD52D8",
@@ -2751,7 +2757,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -2783,7 +2789,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -2808,7 +2814,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "AuthProfileHandlerB0575ABD",
@@ -2904,7 +2910,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -2936,7 +2942,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -2961,7 +2967,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "ConnectHandler2FFD52D8",
@@ -3115,7 +3121,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -3147,7 +3153,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -3172,7 +3178,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "ConnectHandler2FFD52D8",
@@ -3271,7 +3277,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -3303,7 +3309,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -3328,7 +3334,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "RadarHandler0014FACE",
@@ -3424,7 +3430,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -3456,7 +3462,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -3481,7 +3487,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "RadarHandler0014FACE",
@@ -3577,7 +3583,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -3609,7 +3615,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -3634,7 +3640,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "RadarHandler0014FACE",
@@ -3730,7 +3736,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -3762,7 +3768,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -3787,7 +3793,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "RadarHandler0014FACE",
@@ -3883,7 +3889,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -3915,7 +3921,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -3940,7 +3946,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "RadarHandler0014FACE",
@@ -4036,7 +4042,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -4068,7 +4074,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -4093,7 +4099,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "RadarHandler0014FACE",
@@ -4192,7 +4198,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -4224,7 +4230,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -4249,7 +4255,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "EventHandler0ACBF035",
@@ -4403,7 +4409,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -4435,7 +4441,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -4460,7 +4466,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "EventHandler0ACBF035",
@@ -4481,6 +4487,159 @@
    },
    "Metadata": {
     "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/photos/POST/Resource"
+   }
+  },
+  "CommunityOSApieventseventIdoutcomeD90DD707": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApieventseventId42634530"
+    },
+    "PathPart": "outcome",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/outcome/Resource"
+   }
+  },
+  "CommunityOSApieventseventIdoutcomeOPTIONS4E8016E1": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApieventseventIdoutcomeD90DD707"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/outcome/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApieventseventIdoutcomePOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTeventseventIdoutcome9BF3EF9A": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "EventHandler0ACBF035",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:eu-west-2:631259293474:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/POST/events/*/outcome"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/outcome/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..events.{eventId}.outcome"
+   }
+  },
+  "CommunityOSApieventseventIdoutcomePOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTeventseventIdoutcome4B9992F6": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "EventHandler0ACBF035",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:eu-west-2:631259293474:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/POST/events/*/outcome"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/outcome/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..events.{eventId}.outcome"
+   }
+  },
+  "CommunityOSApieventseventIdoutcomePOSTB7B3834D": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "EventHandler0ACBF035",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApieventseventIdoutcomeD90DD707"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/events/{eventId}/outcome/POST/Resource"
    }
   },
   "CommunityOSApinotificationsB4F50B84": {
@@ -4617,7 +4776,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -4649,7 +4808,7 @@
      "Fn::Join": [
       "",
       [
-       "arn:aws:execute-api:us-east-1:110836100897:",
+       "arn:aws:execute-api:eu-west-2:631259293474:",
        {
         "Ref": "CommunityOSApi69010782"
        },
@@ -4674,7 +4833,7 @@
       "Fn::Join": [
        "",
        [
-        "arn:aws:apigateway:us-east-1:lambda:path/2015-03-31/functions/",
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
         {
          "Fn::GetAtt": [
           "EventHandler0ACBF035",
@@ -4697,6 +4856,159 @@
     "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/notifications/test/POST/Resource"
    }
   },
+  "CommunityOSApinotificationsbroadcastB69A0F30": {
+   "Type": "AWS::ApiGateway::Resource",
+   "Properties": {
+    "ParentId": {
+     "Ref": "CommunityOSApinotificationsB4F50B84"
+    },
+    "PathPart": "broadcast",
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/notifications/broadcast/Resource"
+   }
+  },
+  "CommunityOSApinotificationsbroadcastOPTIONS1AA88976": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "ApiKeyRequired": false,
+    "AuthorizationType": "NONE",
+    "HttpMethod": "OPTIONS",
+    "Integration": {
+     "IntegrationResponses": [
+      {
+       "ResponseParameters": {
+        "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,x-user-id,x-user-role,x-community-id'",
+        "method.response.header.Access-Control-Allow-Origin": "'*'",
+        "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET,PUT,POST,DELETE,PATCH,HEAD'"
+       },
+       "StatusCode": "204"
+      }
+     ],
+     "RequestTemplates": {
+      "application/json": "{ statusCode: 200 }"
+     },
+     "Type": "MOCK"
+    },
+    "MethodResponses": [
+     {
+      "ResponseParameters": {
+       "method.response.header.Access-Control-Allow-Headers": true,
+       "method.response.header.Access-Control-Allow-Origin": true,
+       "method.response.header.Access-Control-Allow-Methods": true
+      },
+      "StatusCode": "204"
+     }
+    ],
+    "ResourceId": {
+     "Ref": "CommunityOSApinotificationsbroadcastB69A0F30"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/notifications/broadcast/OPTIONS/Resource"
+   }
+  },
+  "CommunityOSApinotificationsbroadcastPOSTApiPermissionCommunityOsInfraStackCommunityOSApi48324BFCPOSTnotificationsbroadcast2F4F719E": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "EventHandler0ACBF035",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:eu-west-2:631259293474:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/",
+       {
+        "Ref": "CommunityOSApiDeploymentStageprodD37C2FDB"
+       },
+       "/POST/notifications/broadcast"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/notifications/broadcast/POST/ApiPermission.CommunityOsInfraStackCommunityOSApi48324BFC.POST..notifications.broadcast"
+   }
+  },
+  "CommunityOSApinotificationsbroadcastPOSTApiPermissionTestCommunityOsInfraStackCommunityOSApi48324BFCPOSTnotificationsbroadcastFF31FB58": {
+   "Type": "AWS::Lambda::Permission",
+   "Properties": {
+    "Action": "lambda:InvokeFunction",
+    "FunctionName": {
+     "Fn::GetAtt": [
+      "EventHandler0ACBF035",
+      "Arn"
+     ]
+    },
+    "Principal": "apigateway.amazonaws.com",
+    "SourceArn": {
+     "Fn::Join": [
+      "",
+      [
+       "arn:aws:execute-api:eu-west-2:631259293474:",
+       {
+        "Ref": "CommunityOSApi69010782"
+       },
+       "/test-invoke-stage/POST/notifications/broadcast"
+      ]
+     ]
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/notifications/broadcast/POST/ApiPermission.Test.CommunityOsInfraStackCommunityOSApi48324BFC.POST..notifications.broadcast"
+   }
+  },
+  "CommunityOSApinotificationsbroadcastPOST076336D5": {
+   "Type": "AWS::ApiGateway::Method",
+   "Properties": {
+    "AuthorizationType": "NONE",
+    "HttpMethod": "POST",
+    "Integration": {
+     "IntegrationHttpMethod": "POST",
+     "Type": "AWS_PROXY",
+     "Uri": {
+      "Fn::Join": [
+       "",
+       [
+        "arn:aws:apigateway:eu-west-2:lambda:path/2015-03-31/functions/",
+        {
+         "Fn::GetAtt": [
+          "EventHandler0ACBF035",
+          "Arn"
+         ]
+        },
+        "/invocations"
+       ]
+      ]
+     }
+    },
+    "ResourceId": {
+     "Ref": "CommunityOSApinotificationsbroadcastB69A0F30"
+    },
+    "RestApiId": {
+     "Ref": "CommunityOSApi69010782"
+    }
+   },
+   "Metadata": {
+    "aws:cdk:path": "CommunityOsInfraStack/CommunityOSApi/Default/notifications/broadcast/POST/Resource"
+   }
+  },
   "CDKMetadata": {
    "Type": "AWS::CDK::Metadata",
    "Properties": {
@@ -4717,7 +5029,7 @@
       {
        "Ref": "CommunityOSApi69010782"
       },
-      ".execute-api.us-east-1.",
+      ".execute-api.eu-west-2.",
       {
        "Ref": "AWS::URLSuffix"
       },
@@ -4749,7 +5061,7 @@
       {
        "Ref": "CommunityOSApi69010782"
       },
-      ".execute-api.us-east-1.",
+      ".execute-api.eu-west-2.",
       {
        "Ref": "AWS::URLSuffix"
       },
