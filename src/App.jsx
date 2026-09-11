@@ -4,10 +4,22 @@ import { seedMembers } from './mockData';
 import LoginPage from './pages/LoginPage';
 import SetupPage from './pages/SetupPage';
 import DashboardPage from './pages/DashboardPage';
+import RadialGlowBackground from './components/RadialGlowBackground';
+import CinematicIntro from './components/CinematicIntro';
+import LeftProfileNavbar from './components/LeftProfileNavbar';
 
 export default function App() {
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Left Profile Sidebar state (collapsible & hidable via left floating arrow)
+  const [isLeftNavOpen, setIsLeftNavOpen] = useState(false);
+
+  // Intro Animation State (plays on site visit / reload, and replayable via header)
+  const [showIntro, setShowIntro] = useState(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    return !prefersReducedMotion;
+  });
 
   // Navigation / Auth State
   const [selectedRole, setSelectedRole] = useState(null); // 'learner' | 'pro' | 'organizer'
@@ -34,10 +46,65 @@ export default function App() {
   const [newHelpWhen, setNewHelpWhen] = useState('');
   const [showProfileDrawer, setShowProfileDrawer] = useState(false);
 
-  // Stored users database (localStorage backed)
   const [users, setUsers] = useState(() => {
+    const defaultUsers = [
+      {
+        id: "m-11",
+        name: "Emma Smith",
+        email: "learner@example.com",
+        password: "password",
+        role: "learner",
+        roleTitle: "Learner",
+        skills: ["rag", "caching"],
+        focus: "Retrieving history vectors dynamically for conversational memory",
+        community: "demo-community",
+        pic: null
+      },
+      {
+        id: "m-1",
+        name: "Elena Rostova",
+        email: "pro@example.com",
+        password: "password",
+        role: "pro",
+        roleTitle: "Staff AI Engineer",
+        skills: ["rag", "evaluation", "guardrails"],
+        focus: "Optimizing real-time LLM validation latency",
+        community: "demo-community",
+        pic: null,
+        pastHelp: [
+          { id: 1, topic: "Production RAG evaluation", when: "2 months ago" }
+        ]
+      },
+      {
+        id: "m-5",
+        name: "Tariq Mahmood",
+        email: "organizer@example.com",
+        password: "password",
+        role: "organizer",
+        roleTitle: "Platform Engineer",
+        skills: ["vllm", "local-llm", "inference"],
+        focus: "Scaling vLLM throughput under concurrent requests",
+        community: "demo-community",
+        pic: null
+      }
+    ];
     const saved = localStorage.getItem('community_os_users');
-    return saved ? JSON.parse(saved) : [];
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        const merged = [...parsed];
+        for (const defU of defaultUsers) {
+          if (!merged.some(u => u.email.toLowerCase() === defU.email.toLowerCase())) {
+            merged.push(defU);
+          }
+        }
+        return merged;
+      } catch (e) {
+        console.error("Failed to parse saved users:", e);
+      }
+    }
+    localStorage.setItem('community_os_users', JSON.stringify(defaultUsers));
+    return defaultUsers;
   });
 
   // Login/Sign In Flow States
@@ -182,7 +249,9 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0f141c] text-[#eaeded] font-sans antialiased">
+    <div className="min-h-screen bg-[#0f141c] text-[#eaeded] font-sans antialiased relative">
+      {showIntro && <CinematicIntro onComplete={() => setShowIntro(false)} />}
+      <RadialGlowBackground />
       {/* Top Navigation - AWS Console Style */}
       <header className="border-b border-[#353f4d] bg-[#1c2733] px-4 py-2 flex items-center justify-between">
         <div className="flex items-center space-x-6">
@@ -193,17 +262,18 @@ export default function App() {
             </div>
             <div className="w-8 h-1 bg-[#ff9900] rounded-full mt-0.5 ml-0.5"></div>
           </div>
+
+          <button
+            onClick={() => setShowIntro(true)}
+            className="text-[11px] font-mono text-neutral-300 hover:text-[#ff9900] bg-[#2b3947]/80 hover:bg-[#2b3947] border border-[#415164] hover:border-[#ff9900] px-2.5 py-1 transition-all focus:outline-none cursor-pointer rounded-sm flex items-center gap-1.5"
+            title="Replay 3-Second Cinematic Intro Animation"
+          >
+            <span>🎬 Replay Intro</span>
+          </button>
         </div>
 
         {location.pathname !== '/' ? (
-          <div className="flex items-center space-x-4">
-            {/* Region Selector */}
-            <div className="flex items-center space-x-1.5 text-xs text-neutral-300 font-mono bg-[#2b3947] border border-[#415164] px-2.5 py-1 rounded-sm cursor-pointer hover:border-[#ff9900]">
-              <span className="w-1.5 h-1.5 bg-[#0972d3] rounded-full animate-pulse"></span>
-              <span>N. Virginia</span>
-              <span className="text-[9px] text-[#ff9900] font-bold">us-east-1</span>
-            </div>
-
+          <div className="flex items-center space-x-3">
             <span className="text-xs font-mono bg-[#2b3947] px-2.5 py-1 text-neutral-300 border border-[#415164] uppercase">
               Role: {selectedRole}
             </span>
@@ -214,9 +284,9 @@ export default function App() {
               Sign Out
             </button>
             <button 
-              onClick={() => setShowProfileDrawer(true)}
-              title="View Profile"
-              className="w-8 h-8 rounded-none border border-[#415164] bg-[#2b3947] flex items-center justify-center overflow-hidden hover:border-[#ff9900] focus:outline-none shrink-0 cursor-pointer"
+              onClick={() => setIsLeftNavOpen(!isLeftNavOpen)}
+              title={isLeftNavOpen ? "Hide Profile Navbar" : "Open Profile Navbar"}
+              className="w-8 h-8 rounded-none border border-[#415164] bg-[#2b3947] flex items-center justify-center overflow-hidden hover:border-[#ff9900] focus:outline-none shrink-0 cursor-pointer transition-colors"
             >
               {profile.pic ? (
                 <img src={profile.pic} alt="Profile" className="w-full h-full object-cover" />
@@ -234,62 +304,77 @@ export default function App() {
         )}
       </header>
 
-      {/* Main Container */}
-      <main className="max-w-4xl mx-auto px-6 py-12">
-        <Routes>
-          <Route 
-            path="/" 
-            element={
-              <LoginPage 
-                users={users}
-                setProfile={setProfile}
-                setSelectedRole={setSelectedRole}
-                setPastHelp={setPastHelp}
-                members={members}
-                setMembers={setMembers}
-                loginMode={loginMode}
-                setLoginMode={setLoginMode}
-              />
-            } 
+      {/* Main Container Area with Collapsible Left Profile Navbar */}
+      <div className="flex flex-1 min-h-[calc(100vh-50px)] relative">
+        {location.pathname !== '/' && (
+          <LeftProfileNavbar 
+            isOpen={isLeftNavOpen}
+            onToggle={() => setIsLeftNavOpen(!isLeftNavOpen)}
+            profile={profile}
+            setProfile={setProfile}
+            selectedRole={selectedRole}
+            pastHelp={pastHelp}
+            setPastHelp={setPastHelp}
+            handleLogout={handleLogout}
           />
-          <Route 
-            path="/setup" 
-            element={
-              <SetupPage 
-                profile={profile}
-                setProfile={setProfile}
-                selectedRole={selectedRole}
-                setSelectedRole={setSelectedRole}
-                users={users}
-                setUsers={setUsers}
-                setMembers={setMembers}
-                setPastHelp={setPastHelp}
-                setLoginMode={setLoginMode}
-              />
-            } 
-          />
-          <Route 
-            path="/dashboard" 
-            element={
-              <DashboardPage 
-                profile={profile}
-                selectedRole={selectedRole}
-                members={members}
-                myMatches={myMatches}
-                setMyMatches={setMyMatches}
-                proMatches={proMatches}
-                setProMatches={setProMatches}
-                events={events}
-                setEvents={setEvents}
-                sharedContributions={sharedContributions}
-                setSharedContributions={setSharedContributions}
-                communityLinks={communityLinks}
-                setCommunityLinks={setCommunityLinks}
-              />
-            } 
-          />
-        </Routes>
-      </main>
+        )}
+
+        <main className={`flex-1 px-6 py-6 flex flex-col transition-all duration-300 ${location.pathname === '/' ? 'max-w-5xl mx-auto min-h-[calc(100vh-60px)] justify-center' : 'max-w-5xl mx-auto'}`}>
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <LoginPage 
+                  users={users}
+                  setProfile={setProfile}
+                  setSelectedRole={setSelectedRole}
+                  setPastHelp={setPastHelp}
+                  members={members}
+                  setMembers={setMembers}
+                  loginMode={loginMode}
+                  setLoginMode={setLoginMode}
+                />
+              } 
+            />
+            <Route 
+              path="/setup" 
+              element={
+                <SetupPage 
+                  profile={profile}
+                  setProfile={setProfile}
+                  selectedRole={selectedRole}
+                  setSelectedRole={setSelectedRole}
+                  users={users}
+                  setUsers={setUsers}
+                  setMembers={setMembers}
+                  setPastHelp={setPastHelp}
+                  setLoginMode={setLoginMode}
+                />
+              } 
+            />
+            <Route 
+              path="/dashboard" 
+              element={
+                <DashboardPage 
+                  profile={profile}
+                  selectedRole={selectedRole}
+                  members={members}
+                  myMatches={myMatches}
+                  setMyMatches={setMyMatches}
+                  proMatches={proMatches}
+                  setProMatches={setProMatches}
+                  events={events}
+                  setEvents={setEvents}
+                  sharedContributions={sharedContributions}
+                  setSharedContributions={setSharedContributions}
+                  communityLinks={communityLinks}
+                  setCommunityLinks={setCommunityLinks}
+                />
+              } 
+            />
+          </Routes>
+        </main>
+      </div>
 
       {/* Profile Drawer Overlay */}
       {showProfileDrawer && (
@@ -300,7 +385,7 @@ export default function App() {
             className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" 
           />
           {/* Drawer container */}
-          <div className="relative w-full max-w-md bg-[#161b24] border-l border-[#353f4d] h-full p-8 overflow-y-auto flex flex-col justify-between">
+          <div className="relative w-full max-w-md bg-[#161b24] border-l border-[#353f4d] h-full p-5 overflow-y-auto flex flex-col justify-between">
             <div>
               <div className="flex justify-between items-center border-b border-[#353f4d] pb-4 mb-6">
                 <h3 className="text-base font-mono uppercase tracking-wider text-white">My Profile</h3>

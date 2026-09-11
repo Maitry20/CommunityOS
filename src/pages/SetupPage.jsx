@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import ParallaxCard from '../components/ParallaxCard';
 
 export default function SetupPage({ 
   profile, 
@@ -58,7 +59,7 @@ export default function SetupPage({
         role: newUser.roleTitle,
         skills: skillsArray,
         stuck: newUser.focus,
-        experienceLine: `Expert in ${skillsArray[0] || 'engineering'} fields`,
+        experienceLine: defaultPastHelp.length > 0 ? `Solved a similar ${defaultPastHelp[0].topic} problem ${defaultPastHelp[0].when}` : 'Expert in engineering fields',
         bio: newUser.focus,
         roles: ['helping'],
         pic: newUser.pic,
@@ -74,11 +75,11 @@ export default function SetupPage({
   };
 
   return (
-    <div className="max-w-md mx-auto bg-[#161b24] border border-[#353f4d] p-8 animate-fade-in rounded-sm">
-      <h2 className="text-lg font-normal text-white mb-6 border-b border-[#353f4d] pb-4">
+    <ParallaxCard className="max-w-sm mx-auto bg-[#161b24] border border-[#353f4d] p-4 animate-fade-in rounded-sm">
+      <h2 className="text-sm font-normal text-white mb-4 border-b border-[#353f4d] pb-2.5">
         Complete your {selectedRole || 'user'} profile
       </h2>
-      <form onSubmit={handleSetupSubmit} className="space-y-5">
+      <form onSubmit={handleSetupSubmit} className="space-y-3.5">
         {/* Profile Photo Upload */}
         <div className="flex items-center space-x-4">
           <div className="w-12 h-12 bg-[#0f141c] border border-[#353f4d] flex items-center justify-center overflow-hidden shrink-0">
@@ -233,6 +234,6 @@ export default function SetupPage({
           </button>
         </div>
       </form>
-    </div>
+    </ParallaxCard>
   );
 }
